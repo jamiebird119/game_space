@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="page-header">
+
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+	{% for game in games %}
+	<div class="col-12 col-md-6 col-lg-4">
+		<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+			<img style="height: 200px; width: 100%; display: block;" src="{{game.image.url}}">
+			<div class="card-body">
+				<h4 class="card-title">{{ game.name }}</h4>
+				<p class="card-text">{{ game.description }}</p>
+				<ul class="card-text list-unstyled">
+                <li> Price - {{ game.price }} </li>
+                <li class="text-muted"> Rating - {{ game.rating }} </li>
+                <li class="text-muted"> Publisher - {{ game.publisher }}</li>
+                </ul>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+</div>
+{% endblock %}

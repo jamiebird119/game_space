@@ -1,0 +1,22 @@
+[
+    {
+    "pk": 1,
+    "model": "games.console",
+    "fields": { "name": "ps4", "friendly_name": "Playstation 4" }
+  },
+  {
+    "pk": 2,
+    "model": "games.console",
+    "fields": { "name": "x-one", "friendly_name": "Xbox One" }
+  },
+  {
+    "pk": 3,
+    "model": "games.console",
+    "fields": { "name": "switch", "friendly_name": "Nintendo Switch" }
+  },
+  {
+    "pk": 4,
+    "model": "games.console",
+    "fields": { "name": "pc", "friendly_name": "PC" }
+  }
+]

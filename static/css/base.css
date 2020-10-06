@@ -10,3 +10,13 @@
 .search{
   width:70%;
 }
+
+.page-header{
+    height: 150px
+}
+
+@media (max-width: 991px) {
+    .page-header{
+    height: 180px
+}
+}

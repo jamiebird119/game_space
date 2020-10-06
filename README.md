@@ -39,3 +39,7 @@ We continually tweak and adjust this template to help give you the best experien
 --------
 
 Happy coding!
+
+
+Game images and info from Steam.com
+Swtich game info from https://store.nintendo.co.uk/games/nintendo-switch/view-all.list

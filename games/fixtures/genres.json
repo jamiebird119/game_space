@@ -1,0 +1,52 @@
+[
+  {
+    "pk": 1,
+    "model": "games.genre",
+    "fields": { "name": "action", "friendly_name": "Action" }
+  }, 
+  {
+    "pk": 2,
+    "model": "games.genre",
+    "fields": { "name": "adventure", "friendly_name": "Adventure" }
+  },
+  {
+    "pk": 3,
+    "model": "games.genre",
+    "fields": { "name": "casual", "friendly_name": "casual" }
+  },
+  {
+    "pk": 4,
+    "model": "games.genre",
+    "fields": { "name": "indie", "friendly_name": "Indie" }
+  },
+  {
+    "pk": 5,
+    "model": "games.genre",
+    "fields": { "name": "massive_multiplayer", "friendly_name": "Massive Multiplayer" }
+  },
+  {
+    "pk": 6,
+    "model": "games.genre",
+    "fields": { "name": "racing", "friendly_name": "Racing" }
+  },
+  {
+    "pk": 7,
+    "model": "games.genre",
+    "fields": { "name": "rpg", "friendly_name": "RPG" }
+  },
+  {
+    "pk": 8,
+    "model": "games.genre",
+    "fields": { "name": "simulation", "friendly_name": "Simulation" }
+  },
+  {
+    "pk": 9,
+    "model": "games.genre",
+    "fields": { "name": "sports", "friendly_name": "Sports" }
+  },
+  {
+    "pk": 10,
+    "model": "games.genre",
+    "fields": { "name": "strategy", "friendly_name": "Strategy" }
+  }
+]
