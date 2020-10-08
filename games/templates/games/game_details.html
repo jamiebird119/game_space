@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="page-header">
+
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-12">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="">Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#profile">Twitch</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center my-2">
+            <h2>{{ game.name }}</h2>
+            <hr>
+        </div>
+        
+        <div class="col-12 col-md-7">
+            <img src="{{game.image.url}}" class="rounded img-fluid" alt="{{game.name}}"/>
+		</div>
+        <div class="col-12 col-md-5">
+            
+			<ul class="list-unstyled"> 
+                <li> 
+                    <p>{{ game.description }} </p>
+                </li>
+                <li> Publisher - {{game.publisher}}</li>
+                <li> Released - {{game.release_year}}
+                {% if game.special_offer %}
+                <li> <p>Price: <del class="text-muted"> £{{ game.original_price }} </del>  <i class="fas fa-arrow-right"></i>  <strong> £{{game.price}} </strong>    ({{game.offer_percentage}}% OFF!)</p></li>
+                {% else %}
+                <li> Price - £{{ game.price}}<li>
+                {% endif %}
+                <li class="text-muted"> Rating - {{ game.rating}}/100<li>
+                
+            </ul>
+		</div>
+    </div>
+	
+	</div>
+</div>
+</div>
+{% endblock %}

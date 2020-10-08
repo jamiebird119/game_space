@@ -15,10 +15,10 @@
 		<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
 			<img style="height: 200px; width: 100%; display: block;" src="{{game.image.url}}">
 			<div class="card-body">
-				<h4 class="card-title">{{ game.name }}</h4>
-				<p class="card-text">{{ game.description }}</p>
+				<a href="{% url 'game_details' game.id%}" class="btn btn-link game-name text-center"><h4 class="card-title">{{ game.name }}</h4></a>
+				<p class="card-text">Genres : {{ game.genres.name }} Consoles : {{ game.consoles }}</p>
 				<ul class="card-text list-unstyled">
-                <li> Price - {{ game.price }} </li>
+                <li> Price - £{{ game.price }} </li>
                 <li class="text-muted"> Rating - {{ game.rating }} </li>
                 <li class="text-muted"> Publisher - {{ game.publisher }}</li>
                 </ul>
