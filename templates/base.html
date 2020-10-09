@@ -125,6 +125,9 @@
       <div class="row">
         {% include 'includes/mobile-nav.html' %}
       </div>
+      <div class="row"> 
+        {% include 'includes/side-nav.html' %}
+      </div>
     </header>
     {% if messages %}
     <div class="message-container"></div>
@@ -132,11 +135,14 @@
 
     {% block page_header %} 
     {% endblock %} 
+    
 
     {% block content %} 
     {% endblock %}
 
     {% block postloadjs %}
+
+    <script type='text/javascript'src="{% static 'js/side-nav.js'%}"></script>
     {% endblock %}
   </body>
 </html>
