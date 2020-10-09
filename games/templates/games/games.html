@@ -1,31 +1,77 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block page_header %}
-<div class="page-header">
-
-</div>
-{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block page_header %}
+<div class="page-header"></div>
+{% endblock %} {% block content %}
 <div class="container">
-<div class="row">
-	{% for game in games %}
-	<div class="col-12 col-md-6 col-lg-4">
-		<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-			<img style="height: 200px; width: 100%; display: block;" src="{{game.image.url}}">
-			<div class="card-body">
-				<a href="{% url 'game_details' game.id%}" class="btn btn-link game-name text-center"><h4 class="card-title">{{ game.name }}</h4></a>
-				<p class="card-text">Genres : {{ game.genres.name }} Consoles : {{ game.consoles }}</p>
-				<ul class="card-text list-unstyled">
-                <li> Price - £{{ game.price }} </li>
-                <li class="text-muted"> Rating - {{ game.rating }} </li>
-                <li class="text-muted"> Publisher - {{ game.publisher }}</li>
-                </ul>
-			</div>
-		</div>
-	</div>
-	{% endfor %}
-</div>
+    <div class="row">
+        <div class="col-12 col-md-6 my-2">
+            <p>{{ games | length}} Games {% if search_term %} found for '{{ search_term }}'{% endif %}</p>
+        </div>
+    </div>
+  <div class="row">
+    {% for game in games %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card text-white bg-primary mb-3">
+        <img
+          class="rounded"
+          style="height: 200px; width: 100%; display: block;"
+          src="{{game.image.url}}"
+        />
+        <div class="card-body game-card">
+          <a
+            href="{% url 'game_details' game.id%}"
+            class="text-center text-grey"
+            ><h5 class="card-title game-name mb-3">{{ game.name }}</h5></a
+          >
+
+          <p class="card-text">
+            Genres: {% for genre in game.genres.all %}
+            <a class="game-name text-grey" href="">{{ genre.friendly_name }}</a>
+            {% endfor %}
+          </p>
+
+          <p class="card-text">
+            Consoles: {% for console in game.consoles.all %}
+            <a class="game-name text-grey" href=""
+              >{{ console.friendly_name }}</a
+            >
+            {% endfor %}
+          </p>
+          <ul class="card-text list-unstyled">
+            {% if game.special_offer %}
+            <li>
+              <p>
+                Price:
+                <del class="text-muted"> £{{ game.original_price }} </del>
+                <i class="fas fa-arrow-right"></i>
+                <strong> £{{game.price}} </strong> ({{game.offer_percentage}}%
+                OFF!)
+              </p>
+            </li>
+            {% else %}
+            <li><p>Price - £{{ game.price}}</p></li>
+            {% endif %}
+            <li class="text-muted">
+              Rating - {{ game.rating }}/100 <br />
+              Publisher - {{ game.publisher }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Taken from CI ECommerce project -->
+    {% if forloop.counter|divisibleby:1 %}
+    <div class="col-12 d-sm-none my-1">
+      <hr />
+    </div>
+    {% endif %} {% if forloop.counter|divisibleby:2 %}
+    <div class="col-12 d-none d-sm-block d-md-block d-lg-none my-1">
+      <hr />
+    </div>
+    {% endif %} {% if forloop.counter|divisibleby:3 %}
+    <div class="col-12 d-none d-lg-block my-1">
+      <hr />
+    </div>
+    {% endif %} {% endfor %}
+  </div>
 </div>
 {% endblock %}
