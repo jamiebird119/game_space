@@ -1,0 +1,47 @@
+{% extends 'base.html' %}{% load static %} {% block page_header %}
+<div class="page-header"></div>
+{% endblock %} 
+
+{% block corejs %}
+{{ block.super }}
+<script src="https://embed.twitch.tv/embed/v1.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+<div class="row border-grey">
+    <div class="col-12">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" method="GET" href="{% url 'game_details' game.id%}">Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" method="GET" href="{% url 'game_twitch' game.id%}">Twitch</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-12 text-center">
+        {% if streams %}
+        {{ streams.data }}
+        {% endif %}
+        {% if 'err' %}
+        {{ err }}
+        {% endif %}
+    </div>
+    <div class="col-12 text-center">
+        <div id="twitch-embed"></div>
+    </div>
+</div>    
+{% endblock %}
+
+{% block postloadjs %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            new Twitch.Embed("twitch-embed", {
+        width: 854,
+        height: 480,
+        channel: "26007494656",
+        autoplay: True,
+      })});
+    </script>
+{% endblock %}

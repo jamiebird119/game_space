@@ -3,18 +3,24 @@
 
 <div id="mySidenav" class="sidenav navbar-dark">
      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <h5>Consoles</h5>
-    <ul class="list-unstyled">
-        <li><a class="nav-link dropdown-item" href=""> PS4</a></li>
-        <li><a class="nav-link dropdown-item" href=""> XBOX-ONE</a></li>
-        <li><a class="nav-link dropdown-item" href=""> PC</a></li>
-        <li><a class="nav-link dropdown-item" href=""> Switch</a></li>
+    <h5 class="ml-3">Consoles</h5>
+    <ul class="list-unstyled ml-3">
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=Playstation4"> PS4</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=XboxOne"> XBOX-ONE</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=PC">PC</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=switch">Switch</a></li>
     </ul>
-    <h5>Genres</h5>
-    <ul class="list-unstyled">
-        <li><a class="nav-link dropdown-item" href=""> PS4</a></li>
-        <li><a class="nav-link dropdown-item" href=""> XBOX-ONE</a></li>
-        <li><a class="nav-link dropdown-item" href=""> PC</a></li>
-        <li><a class="nav-link dropdown-item" href=""> Switch</a></li>
+    <h5 class="ml-3">Genres</h5>
+    <ul class="list-unstyled ml-3">
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=adventure"> Adventure</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=action"> Action</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=casual"> Casual</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=indie"> Indie</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=multiplayer"> Multiplayer</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=racing"> Racing</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=rpg"> RPG</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=simulation"> Simulation</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=sports"> Sports</a></li>
+        <li><a class="nav-link dropdown-item" href="{% url 'games'%}?q=strategy"> Strategy</a></li>
     </ul>
 </div>

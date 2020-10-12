@@ -3,19 +3,34 @@
 {% endblock %} {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-6 my-2">
+        <div class="col-12 col-md-8 my-2">
             <p>{{ games | length}} Games {% if search_term %} found for '{{ search_term }}'{% endif %}</p>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+            <select id="sort-selector" class="custom-select rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+                <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+                <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                <option value="genre_asc" {% if current_sorting == 'genre_asc' %}selected{% endif %}>Genre(A-Z)</option>
+                <option value="genre_desc" {% if current_sorting == 'genre_desc' %}selected{% endif %}>Genre (Z-A)</option>
+            </select>
+        </div>
         </div>
     </div>
   <div class="row">
     {% for game in games %}
     <div class="col-12 col-md-6 col-lg-4">
       <div class="card text-white bg-primary mb-3">
-        <img
+        <a href="{% url 'game_details' game.id%}"><img
           class="rounded"
           style="height: 200px; width: 100%; display: block;"
           src="{{game.image.url}}"
-        />
+        /></a>
         <div class="card-body game-card">
           <a
             href="{% url 'game_details' game.id%}"
@@ -74,4 +89,30 @@
     {% endif %} {% endfor %}
   </div>
 </div>
+{% endblock %}
+{% block postloadjs %}
+<!-- taken from https://courses.codeinstitute.net/courses/course-v1:CodeInstitute+FSF_102+Q1_2020/courseware/4201818c00aa4ba3a0dae243725f6e32/565adb80d90e4a54b1f5966c5dae5dcb/?child=first -->
+{{ block.super }}
+<script type="text/javascript">
+ $("#sort-selector").change(function(){
+     var selector = $(this);
+     var currentURL = new URL(window.location);
+
+     var selectedVal = selector.val();
+     if(selectedVal != 'reset'){
+         var sort = selectedVal.split('_')[0];
+         var direction = selectedVal.split('_')[1];
+
+         currentURL.searchParams.set('sort', sort);
+         currentURL.searchParams.set('direction', direction)
+
+         window.location.replace(currentURL);
+     }else{
+         currentURL.searchParams.delete('sort');
+         currentURL.searchParams.delete('direction');
+
+         window.location.replace(currentURL);
+     }
+ })
+</script>
 {% endblock %}

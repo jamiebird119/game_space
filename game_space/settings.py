@@ -148,7 +148,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+TWITCH_ID = os.environ.get('TWITCH_ID')
+TWITCH_SECRET = os.environ.get('TWITCH_SECRET')
+TWITCH_API_TOKEN = os.environ.get('TWITCH_API_TOKEN')
 EMAIL_BACKEND = 'django.core.mail.backends.console.EMAIL_BACKEND'
 ACCOUNT_AUTHENIFICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True

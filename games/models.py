@@ -27,7 +27,7 @@ class Genre(models.Model):
 class Game(models.Model):
     sku = models.CharField(max_length=254)
     name = models.CharField(max_length=254, blank=True)
-    description = models.TextField(max_length=350)
+    description = models.TextField(max_length=550)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     genres = models.ManyToManyField('Genre', blank=True)
     consoles = models.ManyToManyField('Console', blank=True)
@@ -40,7 +40,10 @@ class Game(models.Model):
     special_offer = models.BooleanField(null=True, blank=True)
     offer_percentage = models.DecimalField(
         max_digits=3, decimal_places=0, null=True, blank=True)
-    original_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    original_price = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
+    twitch_id = models.DecimalField(
+        max_digits=6, decimal_places=0, null=True, blank=True)
 
     def __str__(self):
         return self.name

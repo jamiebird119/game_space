@@ -34,14 +34,20 @@ hr{
 }
 
 .game-name h5{
-    color: #fff;
+    color: #cccccc;
     display: inline-block;
     text-align: center;
 }
 
 .game-name:hover {
-  text-decoration-color: #fff;
-  color: #fff;
+  text-decoration-color: #cccccc;
+  color: #cccccc;
+  text-decoration: underline;
+}
+
+.nav-link:hover {
+  text-decoration-color: #cccccc;
+  color: #cccccc;
   text-decoration: underline;
 }
 .description{
@@ -50,29 +56,46 @@ hr{
     overflow-y: auto;
 }
 
-@media (max-width: 991px) {
-    .page-header{
-    height: 180px
+/* Scrollbar editor from https://www.digitalocean.com/community/tutorials/css-scrollbars
+The emerging W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #444 #375a7f;
 }
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: #375a7f;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 20px;
+  border: 3px solid #375a7f;
 }
 
 /* The side navigation menu from https://www.w3schools.com/howto/howto_js_sidenav.asp EDITED*/
 .sidenav {
   height: 100vh-107px; 
+  max-height: 100vh-107px;
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 107px; /* Stay under top navbar */
+  bottom: 107px;
   left: 0;
   background-color: #375a7f; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
+  overflow-y: scroll;
+  padding: 60px 0; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 /* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #f1f1f1;
+.sidenav .nav-link:hover {
+  color: #cccccc;
 }
 
 /* Position and style the close button (top right corner) */
@@ -82,8 +105,12 @@ hr{
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  color: #cccccc;
 }
-
+.closebtn:hover{
+    color:black;
+    text-decoration: none;
+}
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left .5s;
@@ -94,4 +121,14 @@ hr{
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+@media (max-width: 991px) {
+    .page-header{
+    height: 180px
+}
+.sidenav {
+    height: 100vh-170px;
+     top: 170px;
+}
 }
