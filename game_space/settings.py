@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitch',
     # my apps
     'home',
-    'games'
+    'games',
+    'twitch_api'
 ]
 
 MIDDLEWARE = [

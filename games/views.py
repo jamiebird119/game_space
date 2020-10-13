@@ -59,30 +59,3 @@ def game_details(request, game_id):
     return render(request, template, context)
 
 
-def game_twitch(request, game_id):
-    try:
-        template = 'games/game_twitch.html'
-        game = get_object_or_404(Game, pk=game_id)
-        filter = game['twich_id']
-        print(filter)
-        headers = {
-            'Client-Id': settings.TWITCH_ID,
-            'Authorization': f'Bearer {settings.TWITCH_API_TOKEN}'}
-        string = 'https://api.twitch.tv/helix/streams'
-        url = string + filter
-        print(url)
-        games = requests.get('https://api.twitch.tv/helix/streams',
-                             headers=headers)
-        games_info = games.json()
-        context = {
-            'game': game,
-            'streams': games_info,
-        }
-        return render(request, template, context)
-    except Exception as err:
-        print("Twitch Game Post Failed")
-        context = {
-            'game': game,
-            'error': err
-        }
-        return render(request, template, context)
