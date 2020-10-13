@@ -117,10 +117,14 @@ The emerging W3C standard that is currently Firefox-only */
   padding: 20px;
 }
 
+.stream-image:hover{
+    opacity: 0.4;
+}
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+  
 }
 
 @media (max-width: 991px) {
@@ -129,6 +133,6 @@ The emerging W3C standard that is currently Firefox-only */
 }
 .sidenav {
     height: 100vh-170px;
-     top: 170px;
+    top: 180px;
 }
 }

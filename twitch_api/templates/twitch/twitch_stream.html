@@ -22,9 +22,10 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-12 text-center">
+		<div class="col-12 text-center px-0">
 			<div id="twitch-embed"></div>
 		</div>
+        <a class="btn btn-primary" href="{% url 'get_twitch' game_id%}">Return to Streams List </a>
 	</div>
 </div>
 {% endblock %}
@@ -33,7 +34,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             new Twitch.Embed("twitch-embed", {
-        width: 854,
+        width: 1140,
         height: 480,
         channel: "{{ username }}",
       })});
