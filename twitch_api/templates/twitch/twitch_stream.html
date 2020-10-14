@@ -11,21 +11,14 @@
 <div class="container">
 	<div class="row border-grey">
 		<div class="col-12">
-			<ul class="nav nav-tabs">
-				<li class="nav-item">
-					<a class="nav-link" method="GET" href="{% url 'game_details' game_id%}">Details</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active" method="GET" href="{% url 'get_twitch' game_id%}">Twitch</a>
-				</li>
-			</ul>
+			{% include 'includes/twitch-game-nav.html' %}
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-12 text-center px-0">
 			<div id="twitch-embed"></div>
 		</div>
-        <a class="btn btn-primary" href="{% url 'get_twitch' game_id%}">Return to Streams List </a>
+        <a class="btn btn-primary" href="{% url 'get_twitch' game.id%}">Return to Streams List </a>
 	</div>
 </div>
 {% endblock %}

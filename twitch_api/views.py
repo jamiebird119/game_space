@@ -100,8 +100,9 @@ def get_twitch(request, game_id):
 
 def get_stream(request, game_id, username):
     template = 'twitch/twitch_stream.html'
+    game = get_object_or_404(Game, pk=game_id)
     context = {
-        'game_id': game_id,
+        'game': game,
         'username': username
     }
     return render(request, template, context)

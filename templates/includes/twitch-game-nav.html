@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            method="GET"
+            href="{% url 'game_details' game.id%}"
+            >Details</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            method="GET"
+            href="{% url 'get_twitch' game.id%}"
+            >Twitch</a
+          >
+        </li>
+      </ul>
