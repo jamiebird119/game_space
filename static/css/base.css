@@ -84,7 +84,7 @@ The emerging W3C standard that is currently Firefox-only */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
   top: 107px; /* Stay under top navbar */
-  bottom: 107px;
+  bottom:0;
   left: 0;
   background-color: #375a7f; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */

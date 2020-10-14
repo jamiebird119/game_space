@@ -8,7 +8,7 @@
 <div class="container">
 <div class="row">
     <div class="col-12">
-        <h4 class="logo-text text-grey">Shopping Bag</h4>
+        <h4 class="logo-text">Shopping Bag</h4>
         <hr>
     </div>
 </div>
@@ -16,6 +16,7 @@
    {% if bag_items %}
 
    {% else %}
+        <!-- Format taken from CI Ecommerce project -->
         <div class="col-12">
             <p> You have not currently added anything to your bag. </p>
             <a class="btn btn-primary" href="{% url 'games' %}"> Return to Games </a>
