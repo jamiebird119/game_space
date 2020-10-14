@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_header %}
+<div class="page-header">
+</div>
+{% endblock %}
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-12">
+        <h4 class="logo-text text-grey">Shopping Bag</h4>
+        <hr>
+    </div>
+</div>
+<div class="row">
+   {% if bag_items %}
+
+   {% else %}
+        <div class="col-12">
+            <p> You have not currently added anything to your bag. </p>
+            <a class="btn btn-primary" href="{% url 'games' %}"> Return to Games </a>
+        </div>
+   {% endif %}
+   </div>
+</div>
+
+{% endblock %}

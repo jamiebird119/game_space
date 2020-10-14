@@ -25,4 +25,5 @@ urlpatterns = [
     path('', include('home.urls')),
     path('games/', include('games.urls')),
     path('twitch/', include('twitch_api.urls')),
+    path('bag/', include('bag.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
