@@ -1,28 +1,98 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block page_header %}
-<div class="page-header">
-</div>
-{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% load bag_tools %}{% block page_header %}
+<div class="page-header"></div>
+{% endblock %} {% block content %}
 <div class="container">
-<div class="row">
-    <div class="col-12">
-        <h4 class="logo-text">Shopping Bag</h4>
-        <hr>
+  <div class="row">
+    <div class="col-12 mb-2">
+      <h4 class="logo-text">Shopping Bag</h4>
     </div>
+  </div>
+  <div class="row">
+    {% if bag_items %}
+    <div class="col-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Items</th>
+            <th scope="col"></th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in bag_items %}
+          <tr class="table-secondary">
+            <td class="w-25" scope="row">
+              <p>
+                {{item.game.name}}<br />
+                on {{item.console.friendly_name}}
+              </p>
+            </td>
+            <td class="w-25">
+              <img src="{{item.game.image.url}}" class="rounded img-fluid" alt="{{item.game.name}}"/>
+            </td>
+            <td>{{item.game.price}}</td>
+            <td>
+              <form class="update-form form" action="{% url 'adjust_bag' item.game_id %}" method="POST">
+              {% csrf_token %}
+                  <input class="form-control form-control-sm qty-select d-inline" name="quantity" type="number" id="quantity" value="{{item.quantity}}"/>
+                  <input type="hidden" name="console" value="{{item.console.id}}"/>
+                  <a class="btn btn-info update-link d-inline" id="update_{{item.game_id}}" ><i class="fas fa-sync-alt"></i></a>
+              </form>
+            </td>
+            <td>{{ item.game.price | calc_subtotal:item.quantity }}</td>
+            <td>
+            <div class="remove_item" data-console="{{ item.console }}" id="container_{{item.game_id}}">
+            <a class="btn btn-danger remove-item" id="remove_{{item.game_id}}" data-console="{{ item.console.id }}"><i class="fas fa-times"></i></a>
+            </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <!-- Format taken from CI Ecommerce project -->
+    <div class="col-12">
+      <p>You have not currently added anything to your bag.</p>
+      <a class="btn btn-primary" href="{% url 'games' %}"> Return to Games </a>
+    </div>
+    {% endif %}
+  </div>
 </div>
-<div class="row">
-   {% if bag_items %}
 
-   {% else %}
-        <!-- Format taken from CI Ecommerce project -->
-        <div class="col-12">
-            <p> You have not currently added anything to your bag. </p>
-            <a class="btn btn-primary" href="{% url 'games' %}"> Return to Games </a>
-        </div>
-   {% endif %}
-   </div>
-</div>
+{% endblock %}
 
+{% block postloadjs%}
+{{ block.super }}
+
+<script type="text/javascript">
+    // Based on javascript function in CI E-commerce project for remove and update//
+    $(".remove-item").click(function(e){
+        var csrfToken = "{{ csrf_token }}";
+        var game_id = $(this).attr("id").split("_")[1];
+        var console_name = $(this).data('console');
+        var url = `/bag/remove/${game_id}/`;
+        var data = {
+            'csrfmiddlewaretoken': csrfToken,
+            'console': console_name
+        };
+        $.post(url, data)
+        .done(function(){
+            location.reload();
+        }).fail(function(){
+            console.log("error")
+        });
+    })
+    $(".update-link").click(function(e){
+        console.log("click")
+        var form = $(this).parent(".update-form");
+        console.log(form)
+        form.submit();
+    })
+
+
+</script>
 {% endblock %}

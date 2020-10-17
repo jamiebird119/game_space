@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs">
         <li class="nav-item">
           <a
-            class="nav-link"
+            class="nav-link {% if not streams and not username %} active {% endif %}"
             method="GET"
             href="{% url 'game_details' game.id%}"
             >Details</a
@@ -9,7 +9,7 @@
         </li>
         <li class="nav-item">
           <a
-            class="nav-link active"
+            class="nav-link {% if streams or username %} active {% endif %} "
             method="GET"
             href="{% url 'get_twitch' game.id%}"
             >Twitch</a

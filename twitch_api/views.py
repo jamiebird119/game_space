@@ -20,12 +20,14 @@ def get_twitch(request, game_id):
             games = requests.get(url,
                                  headers=headers)
             games_info = games.json()
+            print(games_info)
             streams = []
             for item in games_info['data']:
                 stream_info = {'username': item['user_name'],
                                'id': item['id'],
                                'thumbnail': item['thumbnail_url'].replace('{width}x{height}', '350x200'),
-                               'title': item['title']}
+                               'title': item['title'],
+                               'viewers': item['viewer_count']}
                 streams.append(stream_info)
             context = {
                 'game': game,

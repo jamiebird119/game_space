@@ -113,7 +113,11 @@
                 <div class="text-center">
                   <div><i class="fas fa-shopping-bag fa-lg text-grey"></i></div>
                   <p class="text-grey my-0">
+                  {% if total %}
+                    £{{ total|floatformat:2 }}
+                    {% else %}
                     £0.00
+                    {% endif %}
                   </p>
                 </div>
               </a>
