@@ -68,7 +68,28 @@ hr{
     width:50%;
     text-align: center;
 }
+/* Toast messages (arrow taken from CI Ecommerce project)*/
+.arrow-up {
+    width: 0; 
+    height: 0; 
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent; 
+    border-bottom: 10px solid black;
+    position: absolute;
+    top: -10px;
+    right: 36px;
+}
 
+.message-container{
+position: fixed;
+top: 108px;
+right: 5px;
+z-index: 999;
+}
+.alert{
+    width: 12rem;
+
+}
 /* Scrollbar editor from https://www.digitalocean.com/community/tutorials/css-scrollbars
 The emerging W3C standard that is currently Firefox-only */
 * {

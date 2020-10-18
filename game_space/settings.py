@@ -89,6 +89,8 @@ TEMPLATES = [
     },
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 # Backends taken from AllAuth documentation
 AUTHENTICATION_BACKENDS = (
 

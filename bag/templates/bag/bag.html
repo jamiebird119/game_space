@@ -37,7 +37,7 @@
             <td>
               <form class="update-form form" action="{% url 'adjust_bag' item.game_id %}" method="POST">
               {% csrf_token %}
-                  <input class="form-control form-control-sm qty-select d-inline" name="quantity" type="number" id="quantity" value="{{item.quantity}}"/>
+                  <input class="form-control form-control-sm qty-select d-inline" min="1" max="99" name="quantity" type="number" id="quantity" value="{{item.quantity}}"/>
                   <input type="hidden" name="console" value="{{item.console.id}}"/>
                   <a class="btn btn-info update-link d-inline" id="update_{{item.game_id}}" ><i class="fas fa-sync-alt"></i></a>
               </form>

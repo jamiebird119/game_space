@@ -80,7 +80,7 @@
           </div>
         </div>
         <div class="col-lg-3">
-          <ul class="list-unstyled pb-0 mb-2 float-right">
+          <ul class="list-unstyled pb-0 mb-2 float-right mr-4">
             <li class="list-inline-item dropdown">
               <a
                 class="nav-link text-grey"
@@ -133,7 +133,22 @@
       </div>
     </header>
     {% if messages %}
-    <div class="message-container"></div>
+    <div class="message-container">
+        <!-- Taken from base.html of CI Ecommerce project -->
+        {% for message in messages %}
+            {% with message.level as level %}
+                {% if level == 40 %}
+                    {% include 'includes/toasts/toast_error.html' %}
+                {% elif level == 30 %}
+                    {% include 'includes/toasts/toast_warning.html' %}
+                {% elif level == 25 %}
+                    {% include 'includes/toasts/toast_success.html' %}
+                {% else %}
+                    {% include 'includes/toasts/toast_info.html' %}
+                {% endif %}
+            {% endwith %}
+        {% endfor %}
+    </div>
     {% endif %} 
 
     {% block page_header %} 
@@ -146,6 +161,9 @@
     {% block postloadjs %}
 
     <script type="text/javascript" src="{% static 'js/side-nav.js'%}"></script>
+    <script type="text/javascript">
+        $(".alert").toast('show');
+    </script>
     {% endblock %}
   </body>
 </html>
