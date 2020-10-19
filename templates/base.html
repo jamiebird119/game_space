@@ -52,7 +52,7 @@
             <div class="col-12">
               <ul class="list-unstyled navbar-nav">
                 <li class="list-inline-item ml-2">
-                  <a href="" class="text-grey nav-link">Home</a>
+                  <a href="{% url 'home' %}" class="text-grey nav-link">Home</a>
                 </li>
                 <li class="list-inline-item mx-3">
                   <a href="{% url 'games' %}" class="text-grey nav-link">Games</a>
@@ -128,11 +128,7 @@
       <div class="row">
         {% include 'includes/mobile-nav.html' %}
       </div>
-      <div class="row"> 
-        {% include 'includes/side-nav.html' %}
-      </div>
-    </header>
-    {% if messages %}
+      {% if messages %}
     <div class="message-container">
         <!-- Taken from base.html of CI Ecommerce project -->
         {% for message in messages %}
@@ -149,7 +145,12 @@
             {% endwith %}
         {% endfor %}
     </div>
-    {% endif %} 
+    {% endif %}
+      <div class="row"> 
+        {% include 'includes/side-nav.html' %}
+      </div>
+    </header>
+     
 
     {% block page_header %} 
     {% endblock %} 
