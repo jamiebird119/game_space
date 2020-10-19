@@ -99,13 +99,16 @@
                 class="dropdown-menu border-0 bg-primary"
                 aria-labelledby="user-options"
               >
-                <a href="" class="dropdown-item text-grey"
-                  >Product Management</a
-                >
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <a href="" class="dropdown-item text-grey">Product Management</a>
+                {% endif %}
                 <a href="" class="dropdown-item text-grey">My Profile</a>
-                <a href="" class="dropdown-item text-grey">Logout</a>
+                <a href="" class="dropdown-item text-grey">Logout</a>      
+                {% else %}      
                 <a href="" class="dropdown-item text-grey">Register</a>
                 <a href="" class="dropdown-item text-grey">Login</a>
+                {% endif %}
               </div>
             </li>
             <li class="list-inline-item">
@@ -113,8 +116,8 @@
                 <div class="text-center">
                   <div><i class="fas fa-shopping-bag fa-lg text-grey"></i></div>
                   <p class="text-grey my-0">
-                  {% if total %}
-                    £{{ total|floatformat:2 }}
+                  {% if grand_total %}
+                    £{{ grand_total|floatformat:2 }}
                     {% else %}
                     £0.00
                     {% endif %}
@@ -148,6 +151,9 @@
     {% endif %}
       <div class="row"> 
         {% include 'includes/side-nav.html' %}
+        <div class="col-8 alert alert-info text-center" data-autohide="false">
+            <h5 class="my-auto">Free delivery on all orders over £{{ free_delivery_threshold|floatformat:2}}. Start shopping now to receive your discount!</h5>
+        </div>
       </div>
     </header>
      

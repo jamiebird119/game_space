@@ -17,11 +17,16 @@
                 </div>
               </a>
               <div class="dropdown-menu border-0 bg-primary" aria-labelledby="user-options">
+              {% if user.is_authenticated %}
+                {% if user.is_superuser %}
                 <a href="" class="dropdown-item text-grey">Product Management</a>
+                {% endif %}
                 <a href="" class="dropdown-item text-grey">My Profile</a>
-                <a href="" class="dropdown-item text-grey">Logout</a>            
+                <a href="" class="dropdown-item text-grey">Logout</a>      
+                {% else %}      
                 <a href="" class="dropdown-item text-grey">Register</a>
                 <a href="" class="dropdown-item text-grey">Login</a>
+                {% endif %}
               </div>
               </li>
               <li class="list-inline-item">

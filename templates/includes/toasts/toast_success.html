@@ -1,13 +1,35 @@
 <div class="alert alert-dismissible alert-success" data-autohide="false">
-    <div class="arrow-up arrow-success"></div>
-  <div class="toast-header">
-  <strong class="mr-auto">Success</strong>
-  <button type="button" class="btn-dark btn close" data-dismiss="alert">&times;</button>
+  <div class="arrow-up"></div>
+  <div class="toast-header p-0">
+    <strong class="mr-2 w-50">Success</strong>
+    <button
+      type="button"
+      class="btn-dark btn btn-sm close"
+      data-dismiss="alert"
+    >
+      &times;
+    </button>
   </div>
-  <div class="toast-body">
-  
-    {{message}} 
-    
+  <div class="toast-body p-0 mt-3">
+    {{message}} {% if bag_items %}
+    <hr>
+    <p> Your Bag: </p>
+    <div class="row">
+      {% for item in bag_items %}
+      <div class="col-4 p-0">
+        <img class="image-fluid w-100"src="{{item.game.image.url}}"/>
+      </div>
+      <div class="col-8 pr-0">
+        <p> {{ item.game.name }} on {{ item.console.friendly_name }}
+        <br>
+        Qty - {{item.quantity}}
+        </p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if free_delivery_delta %}
+    <p class="delivery-info"><strong> Spend £{{ free_delivery_delta|floatformat:2 }} more to recieve free delivery!</strong> </p>
+    {% endif %}
   </div>
-  
 </div>

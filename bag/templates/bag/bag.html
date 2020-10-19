@@ -50,6 +50,14 @@
             </td>
           </tr>
           {% endfor %}
+          <tr class="table-secondary">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td> Delivery Total : £{% if delivery %}{{ delivery|floatformat:2 }}{% else %}0.00{% endif %} <br>
+           Grand Total : £{{ grand_total|floatformat:2 }} </td>
+           <td></td>
         </tbody>
       </table>
     </div>

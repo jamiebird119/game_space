@@ -1,5 +1,7 @@
 from games.models import Game, Console
 from django.shortcuts import get_object_or_404
+from django.conf import settings
+from decimal import Decimal
 
 
 # Taken from code institute e commerce project
@@ -22,9 +24,23 @@ def bag_contents(request):
                 'console': console,
                 'quantity': quantity,
             })
+        # Taken from CI Ecommerce project
+    if total < settings.FREE_DELIVERY_THRESHOLD:
+        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+    else:
+        delivery = 0
+        free_delivery_delta = 0
+
+    grand_total = total + delivery
+
     context = {
         'bag_items': bag_items,
         'total': total,
-        'product_count': product_count
+        'product_count': product_count,
+        'free_delivery_delta': free_delivery_delta,
+        'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
+        'delivery': delivery,
+        'grand_total': grand_total
     }
     return context

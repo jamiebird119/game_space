@@ -22,7 +22,7 @@ hr{
     border:#444 1px solid;
 }
 .page-header{
-    height: 150px
+    height: 170px
 }
 
 .game-card{
@@ -72,8 +72,8 @@ hr{
 .arrow-up {
     width: 0; 
     height: 0; 
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent; 
     border-bottom: 10px solid black;
     position: absolute;
     top: -10px;
@@ -82,13 +82,32 @@ hr{
 
 .message-container{
 position: fixed;
-top: 109px;
+top: 100px;
 right: 5px;
 z-index: 999;
 }
 .alert{
-    width: 12rem;
+    width: 13rem;
+}
 
+.toast-header {
+    color: #404040;
+    background-color: inherit;
+    border: 0;
+}
+
+.alert-success hr {
+    border: #404040 0.5px solid; 
+}
+.alert-dismissible{
+    padding-right: 1.25rem;
+    border: 2.5px solid #000;
+    max-height: 75vh;
+    overflow: auto;
+}
+
+.delivery-info{
+    color:#404040;
 }
 
 /* Scrollbar editor from https://www.digitalocean.com/community/tutorials/css-scrollbars
@@ -119,7 +138,7 @@ The emerging W3C standard that is currently Firefox-only */
   top: 107px; /* Stay under top navbar */
   bottom:0;
   left: 0;
-  background-color: #375a7f; /* Black*/
+  background-color: #375a7f;
   overflow-x: hidden; /* Disable horizontal scroll */
   overflow-y: scroll;
   padding: 60px 0; /* Place content 60px from the top */
