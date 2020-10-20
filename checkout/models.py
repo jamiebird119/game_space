@@ -6,14 +6,17 @@ import uuid
 from django_countries.fields import CountryField
 
 
-class Discounts(models.Model):
+class Discount(models.Model):
     name = models.CharField(max_length=254, null=False, blank=False)
     code = models.CharField(max_length=10, null=False, blank=False)
     expiry_date = models.DateField(auto_now=False)
-    offer_discount = models.DecimalField(
-        max_digits=2, decimal_places=0, null=False, blank=False)
+    offer_discount = models.DecimalField(max_digits=2,
+                                         decimal_places=0, null=True, blank=True)
     offer_details = models.CharField(max_length=254, null=False, blank=False)
     games_or_consoles_valid = models.JSONField()
+
+    def __str__(self):
+        return self.name
 
 
 # Taken from CI Ecommerce project - edited
@@ -79,14 +82,15 @@ class OrderLineItem(models.Model):
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-    discount = models.ForeignKey(
-        Discounts, null=True, blank=True, on_delete=models.SET_NULL),
+    discount = models.ForeignKey(Discount, null=True,
+                                 blank=True, on_delete=models.SET_NULL)
+    discount_code = models.CharField(max_length=254, blank=True)
     total_after_discount = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.lineitem_total = self.quantity * self.game.price
-        if self.discount:
+        if self.discount_code:
             self.total_after_discount = self.lineitem_total * \
                 round(1 - self.discount.offer_discount/100)
         super().save(*args, **kwargs)

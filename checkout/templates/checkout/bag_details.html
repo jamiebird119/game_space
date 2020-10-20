@@ -1,0 +1,26 @@
+{% load bag_tools %}
+<h4> Bag Items </h4>
+        <hr>
+        
+        {% for item in bag_items %}
+        <div class="row ">
+        <div class="col-5">
+            <p>
+                {{item.game.name}} on {{item.console.friendly_name}}
+                <br>
+                QTY - {{item.quantity}}<br>
+                Price - £{{ item.game.price | calc_subtotal:item.quantity }}
+            </p>
+        </div>
+        <div class="col-7">
+            <a href="{% url 'game_details' item.game.id %}"><img src="{{item.game.image.url}}" class="rounded img-fluid" alt="{{item.game.name}}"/></a>
+        </div>
+        </div>
+        <hr>
+        {% endfor %}
+        <div class="col-12">
+            <h5> Delivery : £{{ delivery|floatformat:2  }}
+            <br>
+            Grand Total: £{{ grand_total|floatformat:2 }}</h5>
+        </div>
+        <hr>

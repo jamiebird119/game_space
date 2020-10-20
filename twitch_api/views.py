@@ -13,7 +13,7 @@ def get_stream_info(request, game):
         url = TWITCH_STREAM_URI + str(game.twitch_id)
         headers = {
             'Client-Id': settings.TWITCH_ID,
-            'Authorization': f'Bearer {settings.TWITCH_API_TOKEN}'}
+            'Authorization': f"Bearer {request.session.get('auth-token')}"}
         games = requests.get(url,
                              headers=headers)
         games_info = games.json()
