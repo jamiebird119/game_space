@@ -4,7 +4,7 @@ from django.db.models.functions import Lower
 from .models import Game
 from django.conf import settings
 import requests
-import json
+from django.contrib import messages
 
 # Create your views here.
 

@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'home',
     'games',
     'twitch_api',
-    'bag'
+    'bag',
+    'checkout',
 ]
 
 MIDDLEWARE = [

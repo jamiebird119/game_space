@@ -31,20 +31,20 @@
               </p>
             </td>
             <td class="w-25">
-              <img src="{{item.game.image.url}}" class="rounded img-fluid" alt="{{item.game.name}}"/>
+              <a href="{% url 'game_details' item.game.id %}"><img src="{{item.game.image.url}}" class="rounded img-fluid" alt="{{item.game.name}}"/></a>
             </td>
             <td>{{item.game.price}}</td>
             <td>
               <form class="update-form form" action="{% url 'adjust_bag' item.game_id %}" method="POST">
               {% csrf_token %}
-                  <input class="form-control form-control-sm qty-select d-inline" min="1" max="99" name="quantity" type="number" id="quantity" value="{{item.quantity}}"/>
+                  <input class="form-control form-control-sm qty-select d-inline" min="0" max="99" name="quantity" type="number" id="quantity" value="{{item.quantity}}"/>
                   <input type="hidden" name="console" value="{{item.console.id}}"/>
                   <a class="btn btn-info update-link d-inline" id="update_{{item.game_id}}" ><i class="fas fa-sync-alt"></i></a>
               </form>
             </td>
             <td>{{ item.game.price | calc_subtotal:item.quantity }}</td>
             <td>
-            <div class="remove_item" data-console="{{ item.console }}" id="container_{{item.game_id}}">
+            <div class="remove_item text-center" data-console="{{ item.console }}" id="container_{{item.game_id}}">
             <a class="btn btn-danger remove-item" id="remove_{{item.game_id}}" data-console="{{ item.console.id }}"><i class="fas fa-times"></i></a>
             </div>
             </td>
@@ -57,7 +57,7 @@
           <td></td>
           <td> Delivery Total : £{% if delivery %}{{ delivery|floatformat:2 }}{% else %}0.00{% endif %} <br>
            Grand Total : £{{ grand_total|floatformat:2 }} </td>
-           <td></td>
+           <td><a class="btn btn-success">Checkout <i class="fas fa-lock"></i></a></td>
         </tbody>
       </table>
     </div>

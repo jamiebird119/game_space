@@ -27,12 +27,12 @@
         </li>
         <li>
           
-           <p> Available on:{% for console in game.consoles.all %} {{ console.friendly_name }} {% endfor %} </p>
+           <p> Available on:{% for console in game.consoles.all %}<a href="{% url 'games'%}?q={{console.name}}"> {{ console.friendly_name }}</a> {% endfor %} </p>
           
         </li>
         <li>
           <p>
-            Genres:{% for genre in game.genres.all %} {{ genre.friendly_name }}
+            Genres:{% for genre in game.genres.all %} <a href="{% url 'games'%}?q={{genre.name}}">{{ genre.friendly_name }}</a>
             {% endfor %}
           </p>
         </li>
