@@ -10,6 +10,8 @@ class Discounts(models.Model):
     name = models.CharField(max_length=254, null=False, blank=False)
     code = models.CharField(max_length=10, null=False, blank=False)
     expiry_date = models.DateField(auto_now=False)
+    offer_discount = models.DecimalField(
+        max_digits=2, decimal_places=0, null=False, blank=False)
     offer_details = models.CharField(max_length=254, null=False, blank=False)
     games_or_consoles_valid = models.JSONField()
 
@@ -43,10 +45,15 @@ class Order(models.Model):
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))[
+        self.original_total = self.lineitems.aggregate(Sum('lineitem_total'))[
             'lineitem_total__sum'] or 0
+        if self.lineitems.total_after_discount:
+            self.order_total = self.lineitems.aggregate(Sum('total_after_discount'))[
+                'total_after_discount__sum'] or 0
+        else:
+            self.order_total = self.original_total
         if self.delivery_cost < settings.FREE_DELIVERY_THRESHOLD:
-            self.delivery_cost = self.order_total * \
+            self.delivery_cost = self.original_total * \
                 settings.STANDARD_DELIVERY_PERCENTAGE/100
         else:
             self.delivery_cost = 0
@@ -79,6 +86,9 @@ class OrderLineItem(models.Model):
 
     def save(self, *args, **kwargs):
         self.lineitem_total = self.quantity * self.game.price
+        if self.discount:
+            self.total_after_discount = self.lineitem_total * \
+                round(1 - self.discount.offer_discount/100)
         super().save(*args, **kwargs)
 
     def __str__(self):

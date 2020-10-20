@@ -57,7 +57,7 @@
           <td></td>
           <td> Delivery Total : £{% if delivery %}{{ delivery|floatformat:2 }}{% else %}0.00{% endif %} <br>
            Grand Total : £{{ grand_total|floatformat:2 }} </td>
-           <td><a class="btn btn-success">Checkout <i class="fas fa-lock"></i></a></td>
+           <td><a href="{% url 'checkout' %}" class="btn btn-success">Checkout <i class="fas fa-lock"></i></a></td>
         </tbody>
       </table>
     </div>
