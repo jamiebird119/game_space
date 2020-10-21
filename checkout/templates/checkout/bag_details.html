@@ -9,7 +9,11 @@
                 {{item.game.name}} on {{item.console.friendly_name}}
                 <br>
                 QTY - {{item.quantity}}<br>
-                Price - £{{ item.game.price | calc_subtotal:item.quantity }}
+                {% if item.discount_price %}
+                Price - <del>£{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}</del> £{{ item.discount_price | calc_subtotal:item.quantity |floatformat:2 }}
+                {% else %}
+                Price -  £{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}
+                {% endif %}
             </p>
         </div>
         <div class="col-7">
@@ -21,6 +25,12 @@
         <div class="col-12">
             <h5> Delivery : £{{ delivery|floatformat:2  }}
             <br>
-            Grand Total: £{{ grand_total|floatformat:2 }}</h5>
+            {% if discount_total %}
+            Grand Total: <del> £{{ grand_total|floatformat:2 }} </del>  £{{ discount_total|floatformat:2 }}</h5>
+            <br> {{ discount }} - applied successfully!
+            {% else %}
+            Grand Total: £{{ grand_total|floatformat:2 }}
+            {% endif %}
+
         </div>
         <hr>

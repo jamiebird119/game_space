@@ -8,7 +8,7 @@ from django_countries.fields import CountryField
 
 class Discount(models.Model):
     name = models.CharField(max_length=254, null=False, blank=False)
-    code = models.CharField(max_length=10, null=False, blank=False)
+    code = models.CharField(max_length=10, null=False, blank=False, primary_key=True)
     expiry_date = models.DateField(auto_now=False)
     offer_discount = models.DecimalField(max_digits=2,
                                          decimal_places=0, null=True, blank=True)
@@ -82,8 +82,6 @@ class OrderLineItem(models.Model):
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-    discount = models.ForeignKey(Discount, null=True,
-                                 blank=True, on_delete=models.SET_NULL)
     discount_code = models.CharField(max_length=254, blank=True)
     total_after_discount = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)

@@ -33,7 +33,11 @@
             <td class="w-25">
               <a href="{% url 'game_details' item.game.id %}"><img src="{{item.game.image.url}}" class="rounded img-fluid" alt="{{item.game.name}}"/></a>
             </td>
-            <td>{{item.game.price}}</td>
+            <td>{% if item.discount_price %}
+                <del>£{{ item.game.price |floatformat:2 }}</del> £{{ item.discount_price |floatformat:2 }}
+                {% else %}
+                £{{ item.game.price |floatformat:2 }}
+                {% endif %}</td>
             <td>
               <form class="update-form form" action="{% url 'adjust_bag' item.game_id %}" method="POST">
               {% csrf_token %}
@@ -42,7 +46,11 @@
                   <a class="btn btn-info update-link d-inline" id="update_{{item.game_id}}" ><i class="fas fa-sync-alt"></i></a>
               </form>
             </td>
-            <td>{{ item.game.price | calc_subtotal:item.quantity }}</td>
+            <td>{% if item.discount_price %}
+                <del>£{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}</del> £{{ item.discount_price | calc_subtotal:item.quantity |floatformat:2 }}
+                {% else %}
+                £{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}
+                {% endif %}</td>
             <td>
             <div class="remove_item text-center" data-console="{{ item.console }}" id="container_{{item.game_id}}">
             <a class="btn btn-danger remove-item" id="remove_{{item.game_id}}" data-console="{{ item.console.id }}"><i class="fas fa-times"></i></a>
@@ -56,7 +64,12 @@
           <td></td>
           <td></td>
           <td> Delivery Total : £{% if delivery %}{{ delivery|floatformat:2 }}{% else %}0.00{% endif %} <br>
-           Grand Total : £{{ grand_total|floatformat:2 }} </td>
+           {% if discount_total %}
+            Grand Total: <del> £{{ grand_total|floatformat:2 }} </del>  £{{ discount_total|floatformat:2 }}</h5>
+            <br> {{ discount }} - applied successfully!
+            {% else %}
+            Grand Total: £{{ grand_total|floatformat:2 }}
+            {% endif %}
            <td><a href="{% url 'checkout' %}" class="btn btn-success">Checkout <i class="fas fa-lock"></i></a></td>
         </tbody>
       </table>
