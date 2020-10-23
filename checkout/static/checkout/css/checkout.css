@@ -1,0 +1,46 @@
+/* Taken from stripe.com (also used in https://courses.codeinstitute.net/courses/course-v1:CodeInstitute+FSF_102+Q1_2020/courseware/4201818c00aa4ba3a0dae243725f6e32/90cda137ebaa461894ba8c89cd83291a/?child=first) */
+.StripeElement,
+.stripe-style-input {
+  box-sizing: border-box;
+  height: calc(1.5em + 0.75rem);
+  padding: 10px 12px;
+  border: 1px solid solid;
+  border-radius: 0.25px;
+  background-color: #fff;
+  color: #444;
+  box-shadow: 0 1px 3px 0 #fff;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  box-shadow: 0 1px 3px 0 #fff;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fff !important;
+}
+
+.stripe-style-input::placeholder {
+    color: #444;
+}
+
+.fieldset-label {
+    position: relative;
+    right: .5rem;
+}
+
+
+#payment-form .form-control, .card-element{
+    color:#444;
+    border: 1px solid #fff;
+}
+
+select, select option {
+    color: #fff;
+}
+select:invalid, select option[value=""] {
+    color : #aab7c4 !important;
+}

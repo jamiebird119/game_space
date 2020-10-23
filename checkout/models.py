@@ -38,8 +38,7 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
-    original_total = models.DecimalField(max_digits=10, decimal_places=2,
-                                         null=True, blank=True)
+    original_total = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False, default=0)
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(
         max_length=254, null=False, blank=False, default='')
@@ -50,11 +49,13 @@ class Order(models.Model):
     def update_total(self):
         self.original_total = self.lineitems.aggregate(Sum('lineitem_total'))[
             'lineitem_total__sum'] or 0
-        if self.lineitems.total_after_discount:
-            self.order_total = self.lineitems.aggregate(Sum('total_after_discount'))[
-                'total_after_discount__sum'] or 0
-        else:
-            self.order_total = self.original_total
+        self.order_total = self.original_total
+        for item in self.lineitems:
+            if item.discount in item:
+                self.order_total += item.total_after_discount
+            else:
+                self.order_total += item.lineitem_total
+
         if self.delivery_cost < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = self.original_total * \
                 settings.STANDARD_DELIVERY_PERCENTAGE/100
@@ -82,16 +83,16 @@ class OrderLineItem(models.Model):
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-    discount_code = models.CharField(max_length=254, blank=True)
+    discount = models.ForeignKey(Discount, blank=True, null=True, on_delete=models.CASCADE)
     total_after_discount = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.lineitem_total = self.quantity * self.game.price
-        if self.discount_code:
+        if self.discount:
             self.total_after_discount = self.lineitem_total * \
-                round(1 - self.discount.offer_discount/100)
+                (1 - self.discount.offer_discount/100)
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'SKU {self.product.sku} on order {self.order.order_number}'
+        return f'SKU {self.game.sku} on order {self.order.order_number}'

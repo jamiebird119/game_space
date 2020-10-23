@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import OrderForm
 from django.contrib import messages
+from django.conf import settings
 from .models import Discount
 
 # Create your views here.
@@ -10,7 +11,9 @@ def checkout(request):
     order_form = OrderForm
     template = 'checkout/checkout.html'
     context = {
-        'order_form': order_form
+        'order_form': order_form,
+        'client_secret': settings.STRIPE_SECRET_KEY,
+        'stripe_public_key': settings.STRIPE_API_KEY
     }
     return render(request, template, context)
 
