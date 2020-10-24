@@ -43,3 +43,13 @@ Happy coding!
 
 Game images and info from Steam.com
 Swtich game info from https://store.nintendo.co.uk/games/nintendo-switch/view-all.list
+
+Test Strip
+Payment Intents API
+When using the Payment Intents API with Stripe's client libraries and SDKs, ensure that:
+
+Authentication flows are triggered when required (use the regulatory test card numbers and PaymentMethods.)
+No authentication (default U.S. card): 4242 4242 4242 4242.
+Authentication required: 4000 0027 6000 3184.
+The PaymentIntent is created with an idempotency key to avoid erroneously creating duplicate PaymentIntents for the same purchase.
+Errors are caught and displayed properly in the UI.

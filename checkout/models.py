@@ -8,7 +8,8 @@ from django_countries.fields import CountryField
 
 class Discount(models.Model):
     name = models.CharField(max_length=254, null=False, blank=False)
-    code = models.CharField(max_length=10, null=False, blank=False, primary_key=True)
+    code = models.CharField(max_length=10, null=False,
+                            blank=False, primary_key=True)
     expiry_date = models.DateField(auto_now=False)
     offer_discount = models.DecimalField(max_digits=2,
                                          decimal_places=0, null=True, blank=True)
@@ -38,7 +39,8 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
-    original_total = models.DecimalField(max_digits=10, decimal_places=2, blank=False, null=False, default=0)
+    original_total = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=False, null=False, default=0)
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(
         max_length=254, null=False, blank=False, default='')
@@ -47,12 +49,13 @@ class Order(models.Model):
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
-        print("Calling Update total")
+        self.order_total = 0
+        # Calculates totals dependent on if there is a discount or not.
+        # (Original total is the cost of orders without discount for calculating delivery costs)
         self.original_total = self.lineitems.aggregate(Sum('lineitem_total'))[
             'lineitem_total__sum'] or 0
-        self.order_total = self.original_total
-        for item in self.lineitems:
-            if item.discount in item:
+        for item in self.lineitems.all():
+            if item.discount:
                 self.order_total += item.total_after_discount
             else:
                 self.order_total += item.lineitem_total
@@ -84,7 +87,8 @@ class OrderLineItem(models.Model):
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
-    discount = models.ForeignKey(Discount, blank=True, null=True, on_delete=models.CASCADE)
+    discount = models.ForeignKey(
+        Discount, blank=True, null=True, on_delete=models.CASCADE)
     total_after_discount = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
 

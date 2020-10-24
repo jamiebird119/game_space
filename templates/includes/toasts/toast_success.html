@@ -28,7 +28,7 @@
       {% endfor %}
     </div>
     {% endif %}
-    {% if free_delivery_delta %}
+    {% if free_delivery_delta and not order %}
     <p class="delivery-info"><strong> Spend £{{ free_delivery_delta|floatformat:2 }} more to recieve free delivery!</strong> </p>
     {% endif %}
   </div>

@@ -43,6 +43,8 @@ form.addEventListener("submit", function (ev) {
   ev.preventDefault();
   card.update({ disabled: true });
   $("#submit-button").attr("disabled", true);
+  $("#payment-form").fadeToggle(100);
+  $("#loading-overlay").fadeToggle(100);
   stripe
     .confirmCardPayment(clientSecret, {
       payment_method: {
@@ -54,10 +56,12 @@ form.addEventListener("submit", function (ev) {
         var errorDiv = document.getElementById("card-errors");
         // Show error to your customer (e.g., insufficient funds)
         $(errorDiv).html(`
-        <span class="icon" role="alert"><i class="fas fa-x"></i></span>
+        <span class="icon" role="alert"><i class="fas fa-cross"></i></span>
         <span>${result.error.message}</span>`);
         card.update({ disabled: false });
         $("#submit-button").attr("disabled", false);
+        $("#payment-form").fadeToggle(100);
+        $("#loading-overlay").fadeToggle(100);
       } else {
         if (result.paymentIntent.status === "succeeded") {
           form.submit();
