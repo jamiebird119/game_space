@@ -29,8 +29,8 @@ card.mount("#card-element");
 card.addEventListener("change", function (event) {
   var errorDiv = document.getElementById("card-errors");
   if (event.error) {
-    errorDiv.innerHTML(`
-        <span class="icon" role="alert"><i class="fas fa-x"></i></span>
+    $(errorDiv).html(`
+        <span class="icon" role="alert"><i class="fas fa-cross"></i></span>
         <span>${event.error.message}</span>`);
   } else {
     errorDiv.textContent = "";
@@ -53,7 +53,7 @@ form.addEventListener("submit", function (ev) {
       if (result.error) {
         var errorDiv = document.getElementById("card-errors");
         // Show error to your customer (e.g., insufficient funds)
-        errorDiv.innerHTML(`
+        $(errorDiv).html(`
         <span class="icon" role="alert"><i class="fas fa-x"></i></span>
         <span>${result.error.message}</span>`);
         card.update({ disabled: false });

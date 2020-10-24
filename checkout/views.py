@@ -31,6 +31,8 @@ def checkout(request):
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
             order.original_bag = bag_info['bag_items']
             order.save()
             for item in bag_info['bag_items']:
@@ -76,7 +78,7 @@ def checkout(request):
             return redirect(reverse("games"))
 
         current_bag = bag_contents(request)
-        if current_bag["discount_total"]:
+        if "discount_total" in current_bag:
             total = current_bag["discount_total"]
         else:
             total = current_bag["grand_total"]
@@ -86,12 +88,12 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-
+        print(intent)
         order_form = OrderForm
         template = 'checkout/checkout.html'
         context = {
             'order_form': order_form,
-            'client_secret': settings.STRIPE_SECRET_KEY,
+            'client_secret': intent.client_secret,
             'stripe_public_key': settings.STRIPE_PUBLIC_KEY
         }
         return render(request, template, context)
