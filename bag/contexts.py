@@ -29,6 +29,7 @@ def bag_contents(request):
                         'game': game,
                         'console': console,
                         'quantity': quantity,
+                        'discount': discount,
                         'discount_price': discount_price
                     })
                 else:
