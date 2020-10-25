@@ -14,14 +14,16 @@ import stripe
 
 @require_POST
 def cache_checkout_data(request):
+    discount = request.session.get('discount', {})
+    bag = request.session.get('bag', {})
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'username': request.user,
             'save_info': request.POST.get('save_info'),
-            'bag': json.dumps(request.session.get(('bag'), {})),
-            'discount': request.session.get('discount', {})
+            'bag': json.dumps(bag),
+            'discount': discount
         })
         return HttpResponse(request, status=200)
     except Exception as e:
@@ -52,7 +54,7 @@ def checkout(request):
             order = order_form.save(commit=False)
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
-            order.original_bag = bag_info['bag_items']
+            order.original_bag = json.dumps(bag)
             order.save()
             for item in bag_info['bag_items']:
                 try:
