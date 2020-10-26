@@ -1,0 +1,27 @@
+.control-group label {
+    margin-top: 1rem;
+}
+
+/* taken from https://bootswatch.com/darkly/ */
+.control-group .controls input{
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: textfield;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    border-radius: 0.25rem;
+    border: 1px solid #222;
+    padding: 0.375rem 0.75rem;
+    width: 75%;
+}
+
+.checkboxinput {
+    padding:0;
+}

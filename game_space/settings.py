@@ -47,9 +47,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.discord',
-    'allauth.socialaccount.providers.paypal',
-    'allauth.socialaccount.providers.twitch',
+    'crispy_forms',
     # my apps
     'home',
     'games',
@@ -86,6 +84,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'bag.contexts.bag_contents'
+            ],
+            'builtins':[
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
             ],
         },
     },
@@ -156,7 +158,13 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EMAIL_BACKEND'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USETLS = True
+EMAIL_HOST = 587
+EMAIL_HOST = 'smtp@gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASS = os.environ.get('EMAIL_HOST_PASS')
+DEFAULT_FROM_EMAIL =  os.environ.get('EMAIL_HOST_USER')
 ACCOUNT_AUTHENIFICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -177,8 +185,8 @@ STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 TWITCH_ID = os.environ.get('TWITCH_ID')
 TWITCH_SECRET = os.environ.get('TWITCH_SECRET')
 TWITCH_API_TOKEN = os.environ.get('TWITCH_API_TOKEN')
+TWITCH_PUBLIC_KEY = os.environ.get('TWITCH_PUBLIC_KEY')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 
 STATIC_URL = '/static/'
