@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'twitch_api',
     'bag',
     'checkout',
+    'profiles',
 ]
 
 MIDDLEWARE = [

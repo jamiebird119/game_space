@@ -14,7 +14,7 @@ var style = {
     fontSmoothing: "antialiased",
     fontSize: "15px",
     "::placeholder": {
-      color: "#444",
+      color: "#888",
     },
   },
   invalid: {

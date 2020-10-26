@@ -21,7 +21,7 @@
                 {% if user.is_superuser %}
                 <a href="" class="dropdown-item text-grey">Product Management</a>
                 {% endif %}
-                <a href="" class="dropdown-item text-grey">My Profile</a>
+                <a href="{% url 'profile' %}" class="dropdown-item text-grey">My Profile</a>
                 <a href="" class="dropdown-item text-grey">Logout</a>      
                 {% else %}      
                 <a href="" class="dropdown-item text-grey">Register</a>

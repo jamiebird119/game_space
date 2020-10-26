@@ -24,7 +24,7 @@
 }
 
 .stripe-style-input::placeholder {
-    color: #444;
+    color: #888;
 }
 
 .fieldset-label {
@@ -34,15 +34,15 @@
 
 
 #payment-form .form-control, .card-element{
-    color:#444;
+    color:#888;
     border: 1px solid #fff;
 }
 
 select, select option {
-    color: #fff;
+    color: #444;
 }
 select:invalid, select option[value=""] {
-    color : #aab7c4 !important;
+    color : #888 !important;
 }
 
 /* Loading overlay taken from CI Ecommerce project*/

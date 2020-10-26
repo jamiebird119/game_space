@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% load static %} 
+{% block extra_css %}
+{{ load.super }}
+<link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}" />
+{% endblock %}
+{% block page_header %}
+<div class="page-header"></div>
+{% endblock %} {% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h4>My Profile</h4>
+			<hr>
+		</div>
+	</div>
+	
+</div>
+<!-- Taken from CI Ecommerce project -->
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ load.super }} 
+{% endblock %}
