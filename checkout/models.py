@@ -63,7 +63,7 @@ class Order(models.Model):
             else:
                 self.order_total += item.lineitem_total
 
-        if self.delivery_cost < settings.FREE_DELIVERY_THRESHOLD:
+        if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = self.original_total * \
                 settings.STANDARD_DELIVERY_PERCENTAGE/100
         else:

@@ -38,12 +38,14 @@
     border: 1px solid #fff;
 }
 
-select, select option {
+ select, select option {
     color: #444;
 }
-select:invalid, select option[value=""] {
+ select:invalid, select option[value=""] {
     color : #888 !important;
 }
+
+
 
 /* Loading overlay taken from CI Ecommerce project*/
 #loading-overlay {

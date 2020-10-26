@@ -14,6 +14,9 @@
       <p> Your Order is below. A confirmation email will be sent to <strong>{{ order.email }}.</strong></p>
     </div>
   </div>
+  {% if from_profile %}
+  <a href="{% url 'profile' %}" class="btn btn-info"> Back to Profile View</a>
+  {% endif %}
   <div class="row">
     <div class="col-12 col-lg-7">
       <div class="order-confirmation-wrapper p-2 border">

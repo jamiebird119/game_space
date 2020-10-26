@@ -2,6 +2,7 @@ from django import forms
 from .models import Order
 
 
+# Taken from CI Ecommerce project - edited
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
@@ -33,6 +34,7 @@ class OrderForm(forms.ModelForm):
                     placeholder = placeholders[field]
             else:
                 self.fields[field].widget.attrs['class'] = 'custom-select'
+                self.fields[field].widget.attrs['placeholder'] = False
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].label = False
             self.fields[field].widget.attrs['class'] = 'form-control'
