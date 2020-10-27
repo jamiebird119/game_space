@@ -11,6 +11,20 @@ $("#id_default_country").change(function () {
   }
 });
 
+$(document).ready(function () {
+  document.querySelectorAll("input").forEach((item) => {
+    item.addEventListener("change", function(item) {
+      console.log();
+      isValid = $(this).valid();
+      if (isValid) {
+        $(this).addClass("is-valid");
+      } else {
+        $(this).addClass("is-invalid");
+        $(this).next('.error').addClass('invalid-feedback')
+      }
+    });
+  });
+});
 
 function toggleDetails(id){
     console.log(id)

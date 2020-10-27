@@ -10,3 +10,4 @@ $("#id_country").change(function () {
     $(this).css("color", "#444");
   }
 });
+

@@ -45,62 +45,79 @@ form.addEventListener("submit", function (ev) {
   $("#submit-button").attr("disabled", true);
   $("#payment-form").fadeToggle(100);
   $("#loading-overlay").fadeToggle(100);
-  var saveInfo = Boolean($('#id-save-info').attr('checked'));
-  var csrfToken = $('input[name="csrfmiddlewaretoken"]').val()
+  var saveInfo = Boolean($("#id-save-info").attr("checked"));
+  var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
   var postData = {
-      "csrfmiddlewaretoken":csrfToken,
-      "client_secret":clientSecret,
-      'save_info':saveInfo,
+    csrfmiddlewaretoken: csrfToken,
+    client_secret: clientSecret,
+    save_info: saveInfo,
   };
-  var url = '/checkout/cache_checkout_data/';
-  $.post(url, postData).done(function(){
-      stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
+  var url = "/checkout/cache_checkout_data/";
+  $.post(url, postData)
+    .done(function () {
+      stripe
+        .confirmCardPayment(clientSecret, {
+          payment_method: {
             card: card,
-            billing_details:{
-                name: $.trim(form.full_name.value),
-                email: $.trim(form.email.value),
-                phone: $.trim(form.phone_number.value),
-                address:{
-                    line1: $.trim(form.street_address1.value),
-                    line2: $.trim(form.street_address2.value),
-                    city: $.trim(form.town_or_city.value),
-                    state: $.trim(form.county.value),
-                    country: $.trim(form.country.value),
-                }
-            }
-        },
-        shipping:{
+            billing_details: {
+              name: $.trim(form.full_name.value),
+              email: $.trim(form.email.value),
+              phone: $.trim(form.phone_number.value),
+              address: {
+                line1: $.trim(form.street_address1.value),
+                line2: $.trim(form.street_address2.value),
+                city: $.trim(form.town_or_city.value),
+                state: $.trim(form.county.value),
+                country: $.trim(form.country.value),
+              },
+            },
+          },
+          shipping: {
             name: $.trim(form.full_name.value),
-                phone: $.trim(form.phone_number.value),
-                address:{
-                    line1: $.trim(form.street_address1.value),
-                    line2: $.trim(form.street_address2.value),
-                    city: $.trim(form.town_or_city.value),
-                    state: $.trim(form.county.value),
-                    country: $.trim(form.country.value),
-                    postal_code: $.trim(form.postcode.value),
-                }
-      }
+            phone: $.trim(form.phone_number.value),
+            address: {
+              line1: $.trim(form.street_address1.value),
+              line2: $.trim(form.street_address2.value),
+              city: $.trim(form.town_or_city.value),
+              state: $.trim(form.county.value),
+              country: $.trim(form.country.value),
+              postal_code: $.trim(form.postcode.value),
+            },
+          },
+        })
+        .then(function (result) {
+          if (result.error) {
+            var errorDiv = document.getElementById("card-errors");
+            // Show error to your customer (e.g., insufficient funds)
+            $(errorDiv).html(`
+        <span class="icon" role="alert"><i class="fas fa-times"></i></span>
+        <span> An error has occured. Please check the form and try again.</span>`);
+            card.update({ disabled: false });
+            $("#submit-button").attr("disabled", false);
+            $("#payment-form").fadeToggle(100);
+            $("#loading-overlay").fadeToggle(100);
+          } else {
+            if (result.paymentIntent.status === "succeeded") {
+              form.submit();
+            }
+          }
+        });
     })
-    .then(function (result) {
-      if (result.error) {
-        var errorDiv = document.getElementById("card-errors");
-        // Show error to your customer (e.g., insufficient funds)
-        $(errorDiv).html(`
-        <span class="icon" role="alert"><i class="fas fa-cross"></i></span>
-        <span>${result.error.message}</span>`);
-        card.update({ disabled: false });
-        $("#submit-button").attr("disabled", false);
-        $("#payment-form").fadeToggle(100);
-        $("#loading-overlay").fadeToggle(100);
+    .fail(function (results) {
+      location.reload();
+    });
+});
+$(document).ready(function () {
+  document.querySelectorAll("input").forEach((item) => {
+    item.addEventListener("change", function(item) {
+      console.log();
+      isValid = $(this).valid();
+      if (isValid) {
+        $(this).addClass("is-valid");
       } else {
-        if (result.paymentIntent.status === "succeeded") {
-          form.submit();
-        }
+        $(this).addClass("is-invalid");
+        $(this).next('.error').addClass('invalid-feedback')
       }
     });
-}).fail(function(results){
-        location.reload();
-    })
+  });
 });
