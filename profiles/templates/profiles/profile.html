@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %}
+{% extends 'base.html' %} {% load static %}{% load bag_tools %}
 {% block extra_css %}
 {{ load.super }}
 <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}" />
@@ -33,7 +33,7 @@
 			<div class="col-12 col-md-8">
 				<h5 class="my-3"> Default Delivery Information </h5>
 				<hr>
-				<form class="profile-update-form">
+				<form class="profile-update-form" action="{% url 'profile'%}" method="POST">
 					{% csrf_token %}
 					{% for fields in form %}
 					<div class="form-group">
@@ -48,37 +48,50 @@
 		<hr>
 		<div class="row">
 			<h5 class="my-2"> Order History</h5>
-			{% for order in orders %}
-			<div class="col-12">
-				<p> {{order.order_number| truncatechars:6 }}<i class="fa fas-arrow-down"></i> </p>
-				<div class="row order-details">
-					{% for item in order.lineitems.all %}
-
-					<div class="col-12 col-md-8">
-						<p>{{item.game.name}} on {{ item.game_console.friendly_name }}</p>
-						<p>{{ item.quantity }} x £{{item.game.price}} </p>
-					</div>
-					<div class="col-12 col-md-4">
-						<img src="{{ item.game.image.url }}"/>
-					</div>
-
-						{% endfor %}
-						<div class="col-12">
-							{% if order.discount %}
+			
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th> Order Number </th>
+                        <th> Date </th>
+                        <th> Total </th>
+                        <th></th>
+                        </tr>
+                    </thead>
+                    {% for order in orders %}
+                    <tr class="table-primary">
+                        <td> <a href="{% url 'order_history' order.order_number %}">{{ order.order_number}}</a></td>
+                        <td> {{ order.date }} </td>
+                        <td> {% if order.discount %}
                             Delivery: £{{ order.delivery_cost|floatformat:2}}<br>
-							Grand Total: <del> £{{ grand_total|floatformat:2 }} </del>
-							£{{ discount_total|floatformat:2 }}</h5>
-							<br> {{ discount }} - applied successfully!
+							Grand Total: <del> £{{ order.grand_total|floatformat:2 }} </del>
+							£{{ order.discount_total|floatformat:2 }}</h5>
+							<br> {{ order.discount }} - applied successfully!
                             {% else %}
                             Delivery: £{{ order.delivery_cost|floatformat:2}}<br>
-                            Grand Total: £{{ grand_total|floatformat:2 }}
-                            {% endif %}
-						</div>
-						</div>
-					</div>
-					{% endfor %}
-				</div>
-			</div>
+                            Grand Total: £{{ order.grand_total|floatformat:2 }}
+                            {% endif %}</td>
+                        <td><a onclick="toggleDetails('{{order.order_number}}')" class="btn btn-secondary float-right"> View order details <i class="fas fa-arrow-down"></i></a></td>
+                    </tr>
+                    <tbody id="{{order.order_number}}" class="d-none">
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Price/Quantity</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                    {% for item in order.lineitems.all %}
+                    <tr class="table-secondary">
+                        <td class="w-25">{{ item.game.name }} on {{ item.game_console.friendly_name }}</td>
+                        <td class="w-25">{% if item.discount %}£{{ item.discount_price }} x {{ item.quantity }} {% else %} £{{ item.game.price }} x {{ item.quantity }} {% endif %}</td>
+                        <td class="w-25">{% if item.discount %}£{{ item.discount_price |calc_subtotal:item.quantity|floatformat:2 }}{% else %}£{{ item.game.price |calc_subtotal:item.quantity| floatformat:2 }}{% endif %}</td>
+                        <td class="w-25"><img class="img-fluid rounded" src="{{item.game.image.url}}"/></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                    {% endfor %}
+                </table>
+            
 			<!-- Taken from CI Ecommerce project -->
 
 			{% endblock %}

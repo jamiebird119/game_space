@@ -11,13 +11,22 @@ from django.contrib.auth.decorators import login_required
 def profile(request):
     template = 'profiles/profile.html'
     profile = get_object_or_404(UserProfile, user=request.user)
-    form = UserProfileForm(instance=profile)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, 'Successfully updated delivery information.')
+        else:
+            messages.error(request, 'Failed to update/add user information. Please ensure form is valid')
+    else:
+        form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
     context = {
         'profile': profile,
         'orders': orders,
         'form': form,
-    }
+        }
     return render(request, template, context)
 
 

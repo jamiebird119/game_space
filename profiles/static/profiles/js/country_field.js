@@ -10,3 +10,11 @@ $("#id_default_country").change(function () {
     $(this).css("color", "#444");
   }
 });
+
+
+function toggleDetails(id){
+    console.log(id)
+    var x = document.getElementById(id)
+    x.classList.toggle("d-none");
+  }
+

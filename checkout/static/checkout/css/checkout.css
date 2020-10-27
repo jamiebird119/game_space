@@ -32,13 +32,7 @@
     right: .5rem;
 }
 
-
-#payment-form .form-control, .card-element{
-    color:#888;
-    border: 1px solid #fff;
-}
-
- select, select option {
+select, select option {
     color: #444;
 }
  select:invalid, select option[value=""] {
