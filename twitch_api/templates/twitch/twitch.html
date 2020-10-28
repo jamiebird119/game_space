@@ -31,7 +31,7 @@
         <p class="card-text">Streamer - {{ object.username }}<br /> Viewers - {{ object.viewers }}</p>
       </div>
     </div>
-    {% endfor %} {% endif %} {% if 'err' %} {{ err }} {% endif %}
+    {% endfor %} {% endif %} {% if 'error' %} <div class="col-12 text-center"><h6 class="text-danger"> An Unexpected error has occured: {{ error }}</h6></div> {% endif %}
   </div>
   {% endblock %}
 </div>
