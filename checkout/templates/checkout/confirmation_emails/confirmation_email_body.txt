@@ -1,0 +1,25 @@
+Dear {{ profile.username }},
+
+This is a confirmation email for you order at GameSpace. We thank you for shopping with us and hope you enjoy your purchases.
+
+See below for details of your order.
+
+Order Number: {{ order.order_number }}
+Delivery Cost: £{{ order.delivery_cost }}
+Grand Total: £{{ order.grand_total }}
+
+Here is the location your order will be shipped to. If the information below is incorrect or if you have any questions please contact us at {{ contact_email }}.
+
+Shipping Information
+{{ order.street_address1 }}
+{{ order.street_address2 }}
+{{ order.town_or_city }}
+{{ order.county }}
+{{ order.country }}
+{{ order.postcode }}
+
+Thanks again for shopping with us. Happy Gaming!
+
+Kind regards,
+
+GameSpace
