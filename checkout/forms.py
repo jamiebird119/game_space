@@ -22,7 +22,6 @@ class OrderForm(forms.ModelForm):
             'street_address2': 'Street Address 2',
             'county': 'County',
         }
-        self.fields['full_name'].widget.attrs['autofocus'] = True
         self.fields['country'].label = False
         for field in self.fields:
             if field != "country":
@@ -38,4 +37,4 @@ class OrderForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].label = False
             self.fields[field].widget.attrs['class'] = 'form-control input'
-            
+

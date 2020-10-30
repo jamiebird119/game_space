@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Game
-from django.conf import settings
-import requests
 from django.contrib import messages
+
+from .models import Game
+from .forms import GameForm
+
 
 # Create your views here.
 
@@ -59,3 +60,10 @@ def game_details(request, game_id):
     return render(request, template, context)
 
 
+def add_game(request):
+    template = "games/add_game.html"
+    form = GameForm()
+    context = {
+        'form': form,
+    }
+    return render(request, template, context)

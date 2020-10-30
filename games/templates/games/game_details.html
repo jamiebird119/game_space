@@ -84,6 +84,10 @@
             <input type="hidden" name="quantity" value="1"/>
           </form>
         </li>
+        {% if request.user.is_superuser %}
+            <a class="btn btn-success">Edit Game</a>
+            <a class="btn btn-danger">Delete Game</a>
+        {% endif %}
       </ul>
     </div>
   </div>
