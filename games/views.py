@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Lower
 from django.contrib import messages
 
@@ -60,7 +61,21 @@ def game_details(request, game_id):
     return render(request, template, context)
 
 
+@login_required
 def add_game(request):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry. Only store owners can add products')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = GameForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Game successfully added!')
+            return redirect(reverse('games'))
+        else:
+            messages.error(
+                request,  'Failed to add product. Please ensure form is valid')
     template = "games/add_game.html"
     form = GameForm()
     context = {

@@ -42,8 +42,8 @@ class GameForm(forms.ModelForm):
             'twitch_id': 'Twitch Id'
         }
         labels = {
-            'genres': 'Genres <small class="text-info"> Hold Shift to select multiple values</small>',
-            'consoles': 'Consoles  <small class="text-info"> Hold Shift to select multiple values</small>',
+            'genres': 'Genres <small class="text-info"> Hold Ctrl to select multiple values</small>',
+            'consoles': 'Consoles  <small class="text-info"> Hold Ctrl to select multiple values</small>',
             'image': 'Image',
             'special_offer': 'Special Offer',
         }
