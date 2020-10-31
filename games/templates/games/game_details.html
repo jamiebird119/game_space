@@ -14,11 +14,15 @@
     </div>
 
     <div class="col-12 col-md-7">
-      <img
-        src="{{game.image.url}}"
-        class="rounded img-fluid"
-        alt="{{game.name}}"
-      />
+      {% if game.image %}
+        <img
+          class="rounded"
+          style="height: 200px; width: 100%; display: block;"
+          src="{{game.image.url}}"
+        />
+        {% else %}
+        <img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+        {% endif %}
     </div>
     <div class="col-12 col-md-5">
       <ul class="list-unstyled">
@@ -85,8 +89,8 @@
           </form>
         </li>
         {% if request.user.is_superuser %}
-            <a class="btn btn-success">Edit Game</a>
-            <a class="btn btn-danger">Delete Game</a>
+            <a class="btn btn-success" href="{% url 'edit_game' game.id %}">Edit Game</a>
+            <a class="btn btn-danger" href="{% url 'remove_game' game.id %}">Delete Game</a>
         {% endif %}
       </ul>
     </div>

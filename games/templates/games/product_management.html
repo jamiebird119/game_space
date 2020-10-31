@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% load static %} {% block page_header %}
+<div class="page-header"></div>
+{% endblock %} {% block content %}
+<div class="container">
+<div class="row">
+    <div class="col">
+        <h5 class="my-2" > Product Management </h5>
+        <hr>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <a class="btn btn-success" href="{% url 'add_game' %}"> Add a game</a>
+    </div>
+    <div class="col-12">
+        <h5 class="my-2">Find a Twitch Id</h5>
+        <form action="{% url 'get_twitch_id' %}" method="post">
+        {% csrf_token %}
+            <input name="game_name" class="form-control w-50 d-inline-block mr-sm-2" type="text" placeholder="Type the game you want an id for here . . .">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <div class="twitch_id">
+            {% if twitch_id %}
+                <p class="text-info">The Twitch Id for the {{ game_name }} is {{ twitch_id }} </p>
+            {% elif twitch_unavailable %}
+                <p class="text-warning"> An error has occured: {{error}}.<br>
+                The game you have entered is incorrect or has no Twitch Id. Please try another or check your spelling</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}

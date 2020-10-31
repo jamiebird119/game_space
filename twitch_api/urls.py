@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path('twitch/<game_id>/', views.get_twitch, name="get_twitch"),
     path('get_stream/<game_id>/<username>', views.get_stream, name="get_stream"),
+    path('get_twitch_id/', views.get_twitch_id, name="get_twitch_id")
 ]

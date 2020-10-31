@@ -82,3 +82,48 @@ def add_game(request):
         'form': form,
     }
     return render(request, template, context)
+
+
+@login_required
+def edit_game(request, game_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry. Only store owners can add games')
+        return redirect(reverse('home'))
+    game = get_object_or_404(Game, pk=game_id)
+    if request.method == 'POST':
+        form = GameForm(request.POST, request.FILES, instance=game)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request, f'Game {game.name} successfully edited')
+            return redirect(reverse('game_details', args=[game.id]))
+        else:
+            messages.error(
+                request,  'Failed to add game. Please ensure form is valid')
+    form = GameForm(instance=game)
+    template = "games/edit_game.html"
+    context = {
+        'game': game,
+        'form': form,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def remove_game(request, game_id):
+
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry. Only store owners can add games')
+        return redirect(reverse('home'))
+
+    game = get_object_or_404(Game, pk=game_id)
+    game.delete()
+    messages.success(request, 'Game successfully deleted')
+    return redirect(reverse('games'))
+
+
+@login_required
+def product_management(request):
+    template = 'games/product_management.html'
+    context = {}
+    return render(request, template, context)
