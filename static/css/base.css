@@ -68,6 +68,10 @@ hr{
     width:50%;
     text-align: center;
 }
+
+.twitch_id{
+    min-height: 100px;
+}
 /* Toast messages (arrow taken from CI Ecommerce project)*/
 .arrow-up {
     width: 0; 

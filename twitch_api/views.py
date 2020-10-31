@@ -159,6 +159,7 @@ def return_id(request, game_name, authorisation):
         else:
             twitch_id = twitch_data.json()['data'][0]['id']
             context = {
+                'games': Game.objects.all(),
                 'game_name': game_name,
                 'twitch_id': twitch_id,
             }

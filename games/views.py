@@ -125,5 +125,7 @@ def remove_game(request, game_id):
 @login_required
 def product_management(request):
     template = 'games/product_management.html'
-    context = {}
+    context = {
+        'games': Game.objects.all(),
+    }
     return render(request, template, context)

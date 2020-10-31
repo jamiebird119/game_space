@@ -13,7 +13,7 @@
         <a class="btn btn-success" href="{% url 'add_game' %}"> Add a game</a>
     </div>
     <div class="col-12">
-        <h5 class="my-2">Find a Twitch Id</h5>
+        <h5 class="my-4">Find a Twitch Id</h5>
         <form action="{% url 'get_twitch_id' %}" method="post">
         {% csrf_token %}
             <input name="game_name" class="form-control w-50 d-inline-block mr-sm-2" type="text" placeholder="Type the game you want an id for here . . .">
@@ -21,14 +21,43 @@
         </form>
         <div class="twitch_id">
             {% if twitch_id %}
-                <p class="text-info">The Twitch Id for the {{ game_name }} is {{ twitch_id }} </p>
+                <p class="text-info mt-3">The Twitch Id for <strong>{{ game_name }} </strong> is <strong>{{ twitch_id }}</strong> <br> Add it to your add game to activate twitch streaming</p>
             {% elif twitch_unavailable %}
-                <p class="text-warning"> An error has occured: {{error}}.<br>
+                <p class="text-warning mt-3"> An error has occured: {{error}}.<br>
                 The game you have entered is incorrect or has no Twitch Id. Please try another or check your spelling</p>
             {% endif %}
+            <hr>
         </div>
     </div>
 </div>
-
+<div class="row">
+    <div class="col-12">
+    <h5 class="my-4">Current Games List </h5>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-active">
+                    <th> Game </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for game in games %}
+                {% if forloop.counter|divisibleby:2 %}
+                <tr class="table-secondary">
+                    <td> <a href="{% url 'game_details' game.id %}">{{ game.name }}</a> </td>
+                    <td> <a href="{% url 'edit_game' game.id%}" class="btn btn-success"> Edit </a></td>
+                    <td> <a href="{% url 'remove_game' game.id%}" class="btn btn-danger"> Delete </a></td>
+                </tr>
+                {% else %}
+                <tr class="table-light">
+                    <td> <a href="{% url 'game_details' game.id %}">{{ game.name }}</a> </td>
+                    <td> <a href="{% url 'edit_game' game.id%}" class="btn btn-success"> Edit </a></td>
+                    <td> <a href="{% url 'remove_game' game.id%}" class="btn btn-danger"> Delete </a></td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </div>
+</div>
 </div>
 {% endblock %}
