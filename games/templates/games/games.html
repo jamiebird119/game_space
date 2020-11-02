@@ -32,9 +32,10 @@
           class="rounded"
           style="height: 200px; width: 100%; display: block;"
           src="{{game.image.url}}"
+          alt="{{game.name}}"
         />
         {% else %}
-        <img class="rounded" style="height: 200px; width: 100%; display: block;" src="{{ MEDIA_URL }}/noimage.png" alt="{{ product.name }}">
+        <img class="rounded" style="height: 200px; width: 100%; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ game.name }}">
         {% endif %}
         </a>
         <div class="card-body game-card">

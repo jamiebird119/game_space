@@ -70,12 +70,12 @@ def add_game(request):
     if request.method == 'POST':
         form = GameForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            game = form.save()
             messages.success(request, 'Game successfully added!')
-            return redirect(reverse('games'))
+            return redirect(reverse('game_details', args=[game.id]))
         else:
             messages.error(
-                request,  'Failed to add product. Please ensure form is valid')
+                request,  f'Failed to add product. Please ensure form is valid : {form.errors}')
     template = "games/add_game.html"
     form = GameForm()
     context = {
@@ -96,7 +96,7 @@ def edit_game(request, game_id):
             form.save()
             messages.success(
                 request, f'Game {game.name} successfully edited')
-            return redirect(reverse('game_details', args=[game.id]))
+            return redirect(reverse('game_details', args=[game_id]))
         else:
             messages.error(
                 request,  'Failed to add game. Please ensure form is valid')

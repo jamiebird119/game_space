@@ -13,18 +13,17 @@
       <hr />
     </div>
 
-    <div class="col-12 col-md-7">
+    <div class="col-12 col-md-6">
       {% if game.image %}
         <img
-          class="rounded"
-          style="height: 200px; width: 100%; display: block;"
+          class="rounded mx-auto my-2 game-image"
           src="{{game.image.url}}"
         />
         {% else %}
         <img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
         {% endif %}
     </div>
-    <div class="col-12 col-md-5">
+    <div class="col-12 col-md-6">
       <ul class="list-unstyled">
         <li>
           <p>{{ game.description }}</p>

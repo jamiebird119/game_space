@@ -21,7 +21,7 @@
         </form>
         <div class="twitch_id">
             {% if twitch_id %}
-                <p class="text-info mt-3">The Twitch Id for <strong>{{ game_name }} </strong> is <strong>{{ twitch_id }}</strong> <br> Add it to your add game to activate twitch streaming</p>
+                <p class="text-info mt-3">The Twitch Id for <strong>{{ game_name }} </strong> is <strong>{{ twitch_id }}</strong> <br> Add it when you add your game to activate twitch streaming</p>
             {% elif twitch_unavailable %}
                 <p class="text-warning mt-3"> An error has occured: {{error}}.<br>
                 The game you have entered is incorrect or has no Twitch Id. Please try another or check your spelling</p>
@@ -43,13 +43,13 @@
             </thead>
             {% for game in games %}
                 {% if forloop.counter|divisibleby:2 %}
-                <tr class="table-secondary">
+                <tr class="table-default">
                     <td> <a href="{% url 'game_details' game.id %}">{{ game.name }}</a> </td>
                     <td> <a href="{% url 'edit_game' game.id%}" class="btn btn-success"> Edit </a></td>
                     <td> <a href="{% url 'remove_game' game.id%}" class="btn btn-danger"> Delete </a></td>
                 </tr>
                 {% else %}
-                <tr class="table-light">
+                <tr class="table-secondary">
                     <td> <a href="{% url 'game_details' game.id %}">{{ game.name }}</a> </td>
                     <td> <a href="{% url 'edit_game' game.id%}" class="btn btn-success"> Edit </a></td>
                     <td> <a href="{% url 'remove_game' game.id%}" class="btn btn-danger"> Delete </a></td>
