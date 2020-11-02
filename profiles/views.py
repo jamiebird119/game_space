@@ -36,9 +36,8 @@ def add_profile_photo(request):
     profile = get_object_or_404(UserProfile, user=request.user)
     orders = profile.orders.all()
     if request.method == 'POST':
-        image_form = request.FILES["user_image"]
-        print(image_form)
-        profile.user_image = image_form
+        image_file = request.FILES["user_image"]
+        profile.user_image = image_file
         profile.save()
         messages.success(
             request, 'Successfully updated profile image information.')

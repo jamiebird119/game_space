@@ -6,7 +6,12 @@
     background: #222;
     width:100%;
 }
-
+.logo-image{
+    border-radius: 50%;
+    height: auto;
+    width: 70px;
+    opacity: 0.9;
+}
 .text-grey{
   color: #cccccc;
 }
@@ -84,6 +89,11 @@ display: block;
     max-width: 300px;
     max-height: 200px;
     height: auto;
+}
+
+.side-nav-image{
+    max-width: 150px;
+    max-height: 150px;
 }
 /* Toast messages (arrow taken from CI Ecommerce project)*/
 .arrow-up {

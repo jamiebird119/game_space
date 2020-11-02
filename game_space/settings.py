@@ -85,6 +85,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bag.contexts.bag_contents',
                 'django.template.context_processors.media',
+                'profiles.contexts.profile_from_user',
             ],
             'builtins':[
                 'crispy_forms.templatetags.crispy_forms_tags',

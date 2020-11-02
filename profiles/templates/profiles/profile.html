@@ -28,7 +28,7 @@
             <form enctype="multipart/form-data" method="POST" action="{% url 'add_profile_photo' %}" name="profile-image-form">
             {% csrf_token %}
 			<div class="form-group mt-2">
-                <p> Current: <a class="display-inline" target="_blank" href="{{ profile.user_image.url }}">{{ profile.user_image.url }}</a></p>
+                <p> Current File: <a class="display-inline" target="_blank" href="{{ profile.user_image.url }}">{{ profile.user_image.url }}</a></p>
 				<label for="ProfileImageInputFile">Change your profile image here. </label>
 				<input name="user_image" type="file" class="form-control-file" id="ProfileImageInputFile" aria-describedby="fileHelp" {% if profile.user_image %} value="{{profile.user_image.url}}" {% endif %}>
             </div>
