@@ -31,10 +31,10 @@ class OrderForm(forms.ModelForm):
                     placeholder = f'{placeholders[field]} *'
                 else:
                     placeholder = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = placeholder
+                self.fields[field].label = False
+                self.fields[field].widget.attrs['class'] = 'form-control input'
             else:
                 self.fields[field].widget.attrs['class'] = 'custom-select'
                 self.fields[field].widget.attrs['placeholder'] = False
-            self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].label = False
-            self.fields[field].widget.attrs['class'] = 'form-control input'
 

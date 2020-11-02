@@ -24,3 +24,8 @@
 
 </div>
 {% endblock %}
+
+{% block postloadjs %}
+{{ load.super }} 
+<script src="{% static 'js/form-input.js' %}" type="text/javascript"></script>
+{% endblock %}

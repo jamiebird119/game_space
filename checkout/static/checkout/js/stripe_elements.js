@@ -107,17 +107,4 @@ form.addEventListener("submit", function (ev) {
       location.reload();
     });
 });
-$(document).ready(function () {
-  document.querySelectorAll("input").forEach((item) => {
-    item.addEventListener("change", function(item) {
-      console.log();
-      isValid = $(this).valid();
-      if (isValid) {
-        $(this).addClass("is-valid");
-      } else {
-        $(this).addClass("is-invalid");
-        $(this).next('.error').addClass('invalid-feedback')
-      }
-    });
-  });
-});
+
