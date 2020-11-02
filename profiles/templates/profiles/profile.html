@@ -19,19 +19,34 @@
 	</div>
 	<div class="row">
 		<!--  Some parts taken from CI Ecommerce project - edited -->
-		<div class="col-12 col-md-4 text-center">
+		<div class="col-12 col-md-4">
 			<h5 class="mb-2"> Welcome, {{ profile.user }}</h5>
 			{% if profile.user_image %}
 			<div class="profile-image-container">
-				<img src="{% media filename='profile.user_image' }"/>
+				<img class="user-image" src="{{ profile.user_image.url}}"/>
             </div>
+            <form enctype="multipart/form-data" method="POST" action="{% url 'add_profile_photo' %}" name="profile-image-form">
+            {% csrf_token %}
+			<div class="form-group mt-2">
+                <p> Current: <a class="display-inline" target="_blank" href="{{ profile.user_image.url }}">{{ profile.user_image.url }}</a></p>
+				<label for="ProfileImageInputFile">Change your profile image here. </label>
+				<input name="user_image" type="file" class="form-control-file" id="ProfileImageInputFile" aria-describedby="fileHelp" {% if profile.user_image %} value="{{profile.user_image.url}}" {% endif %}>
+            </div>
+            <button class="btn btn-success float-left" type="submit">Change Profile Photo</button>
+            </form>
             {% else %}
             <div class="placeholder-image my-2"><i class="fas fa-user-circle fa-9x"></i></div>
+            <form enctype="multipart/form-data" method="POST" action="{% url 'add_profile_photo' %}" name="profile-image-form">
+            {% csrf_token %}
 			<div class="form-group mt-2">
-				<label for="exampleInputFile">Upload a profile image here. </label>
-				<input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+				<label for="ProfileImageInputFile">Upload/Change your profile image here. </label>
+				<input name="user_image" type="file" class="form-control-file" id="ProfileImageInputFile" aria-describedby="fileHelp" {% if profile.user_image %} value="{{profile.user_image.url}}" {% endif %}>
             </div>
-				{% endif %}
+            <button class="btn btn-success float-left" type="submit">Upload Profile Photo</button>
+            </form>
+            {% endif %}
+            
+				
 
 			</div>
 			<div class="col-12 col-md-8">

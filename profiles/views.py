@@ -18,7 +18,8 @@ def profile(request):
             messages.success(
                 request, 'Successfully updated delivery information.')
         else:
-            messages.error(request, 'Failed to update/add user information. Please ensure form is valid')
+            messages.error(
+                request, 'Failed to update/add user information. Please ensure form is valid')
     else:
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
@@ -26,7 +27,29 @@ def profile(request):
         'profile': profile,
         'orders': orders,
         'form': form,
-        }
+    }
+    return render(request, template, context)
+
+
+def add_profile_photo(request):
+    template = 'profiles/profile.html'
+    profile = get_object_or_404(UserProfile, user=request.user)
+    orders = profile.orders.all()
+    if request.method == 'POST':
+        image_form = request.FILES["user_image"]
+        print(image_form)
+        profile.user_image = image_form
+        profile.save()
+        messages.success(
+            request, 'Successfully updated profile image information.')
+    else:
+        messages.error(
+            request, 'Failed to upload profile image. Please try again')
+    context = {
+        'profile': profile,
+        'orders': orders,
+        'form': UserProfileForm(instance=profile),
+    }
     return render(request, template, context)
 
 

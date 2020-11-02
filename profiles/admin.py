@@ -13,7 +13,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     fields = [
         'default_full_name', 'default_phone_number', 'default_postcode',
         'default_town_or_city', 'default_street_address1',
-        'default_street_address2', 'default_county'
+        'default_street_address2', 'default_county', "user_image"
     ]
 
 

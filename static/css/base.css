@@ -79,6 +79,12 @@ display: block;
 .twitch_id{
     min-height: 90px;
 }
+
+.user-image{
+    max-width: 300px;
+    max-height: 200px;
+    height: auto;
+}
 /* Toast messages (arrow taken from CI Ecommerce project)*/
 .arrow-up {
     width: 0; 
