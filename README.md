@@ -1,45 +1,44 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+# GameSpace
 
-Welcome jamiebird119,
+GameSpace is an E-commerce store centered around all things gaming. With a catalogue spanning many consoles and genres, users can efficiently 
+find, purchase and experience new games. With twitch functionality users can also watch live gameplay to experience products prior to purchase. 
+Users also have the option of saving their data to streamline the checkout process. Game developers can easily add new games and with twitch id return functionality
+can easily set up twitch streaming for their games too. 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
+## Table of Content
+1. [**UX**](#ux)
+    - [**User Stories**](#user-stories)
+    - [**Design**](#design)
+        - [**Colour Scheme**](#colour-scheme)
+        - [**Wireframes**](#wireframes)
+        - [**Icons**](#icons)
 
-## Gitpod Reminders
+2. [**Features**](#features)
+    - [**Existing Features**](#existing-features)
+    - [**Features left to implement**](#features-left-to-implement)
+    - [**Technologies Used**](#technologies-used)
+3. [**Testing**](#testing)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+4. [**Deployment**](#deployment)
 
-`python3 -m http.server`
+5. [**Credits**](#credits)
 
-A blue button should appear to click: *Make Public*,
 
-Another blue button should appear to click: *Open Browser*.
+7. [**Media**](#media)
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+8. [**Acknowledgements**](#acknowledgements)
 
-A blue button should appear to click: *Make Public*,
 
-Another blue button should appear to click: *Open Browser*.
+## UX
+GameSpace has been created with user experience in mind for ease of use and a stress on bringing value to said user. Search functionality 
+can be found in several places, including the sidenav and search function in the navbar the aim is to give the user a variety of easy ways to find 
+the exact product they want. Filter options also give the browsing user alternative ways to rank results. Each game can be selected to get more
+in depth information and to view twitch streams. The bag tools allow users to see what they currently are set to purchase and how much they have to spend to get free 
+delivery. 
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
-
-## Updates Since The Instructional Video
-
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
-
+### User Stories
+Follow the link for a full list of user stories -
+**UserStories**(#https://docs.google.com/spreadsheets/d/1BrhNhX1Fiv-3raMT9crMyYyqyEfbfkIgaHa_c50PAEY/edit?usp=sharing)
 
 Game images and info from Steam.com
 Swtich game info from https://store.nintendo.co.uk/games/nintendo-switch/view-all.list
