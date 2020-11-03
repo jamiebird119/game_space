@@ -33,7 +33,7 @@ if DEVELOPMENT == 'True':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost','https://game-space-ecommerce.herokuapp.com/']
 
 
 INSTALLED_APPS = [
