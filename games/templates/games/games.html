@@ -47,6 +47,7 @@
           <p class="card-text">
             Genres: {% for genre in game.genres.all %}
             <a class="game-name text-grey" href="{% url 'games'%}?q={{genre.name}}">{{ genre.friendly_name }}</a>
+            
             {% endfor %}
           </p>
 
