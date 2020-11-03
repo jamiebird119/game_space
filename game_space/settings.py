@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEVELOPMENT = os.environ.get('DEVELOPMENT')
-if DEVELOPMENT == 'True':
+if DEVELOPMENT:
     DEBUG = True
 else:
     DEBUG = False
@@ -193,7 +193,6 @@ STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 TWITCH_ID = os.environ.get('TWITCH_ID')
 TWITCH_SECRET = os.environ.get('TWITCH_SECRET')
 TWITCH_API_TOKEN = os.environ.get('TWITCH_API_TOKEN')
-TWITCH_PUBLIC_KEY = os.environ.get('TWITCH_PUBLIC_KEY')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
