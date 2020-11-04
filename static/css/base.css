@@ -207,7 +207,7 @@ The emerging W3C standard that is currently Firefox-only */
   
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1024px) {
     .page-header{
     height: 260px;
     }
