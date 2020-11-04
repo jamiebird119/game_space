@@ -36,7 +36,7 @@ class Game(models.Model):
     release_year = models.DecimalField(max_digits=4, decimal_places=0)
     publisher = models.CharField(max_length=254, blank=True)
     image_url = models.URLField(max_length=254, blank=True)
-    image = models.ImageField(blank=True)
+    image = models.ImageField(upload_to="media", blank=True)
     special_offer = models.BooleanField(null=True, blank=True)
     offer_percentage = models.DecimalField(
         max_digits=3, decimal_places=0, null=True, blank=True)

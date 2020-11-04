@@ -9,7 +9,7 @@ from django.dispatch import receiver
 # Taken from CI Ecommerce project - edited
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_image = models.ImageField(upload_to="profile_images/", blank=True)
+    user_image = models.ImageField(upload_to="media/profile_images/", blank=True)
     default_full_name = models.CharField(max_length=50, blank=True, default="")
     default_email = models.EmailField(max_length=254, blank=True)
     default_phone_number = models.CharField(

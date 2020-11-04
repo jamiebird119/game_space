@@ -45,7 +45,6 @@ class StripeWH_Handler():
         intent = event.data.object
         pid = intent.id
         bag = json.loads(intent.metadata.bag)
-        print(bag)
         save_info = intent.metadata.save_info
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.charges.data[0].shipping
@@ -163,7 +162,7 @@ class StripeWH_Handler():
                 return HttpResponse(content=f'An error has occured: {event["type"]} | ERROR', status=500)
         self._send_confirmation_email(order)
         return HttpResponse(
-            content=f'Webhook success recieved: {event["type"]} | SUCCESSF Created order in webhook',
+            content=f'Webhook success recieved: {event["type"]} | SUCCESS Created order in webhook',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
