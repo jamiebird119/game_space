@@ -1,19 +1,25 @@
 <div class="col-12 d-lg-none text-center">
-					<a class="navbar-brand  mx-auto logo-link" href="{% url 'home' %}">
+					<a class="navbar-brand  mx-auto logo-link fixed-top" href="{% url 'home' %}">
 						<h2 class="logo-text text-grey mt-2"><strong>Game</strong><i>Space</i></h2>
           </a>
         </div>
-      
-            <nav class="navbar d-lg-none navbar-dark bg-primary w-100">
-                <button class="navbar-toggler ml-3" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                <li class="list-inline-item dropdown">
+        
+            <nav class="navbar d-lg-none navbar-dark bg-primary w-100 mobile-spacer">
+                <li class="list-inline-item nav-link-list">
+                <a href="{% url 'games' %}" class="d-block d-lg-none">
+                  <div class="text-center">
+                    <div><i class="fas fa-gamepad text-grey"></i></div>
+                    <p class="text-grey">
+                      Games
+                    </p>
+                  </div>
+                  </a>
+                </li>
+                <li class="list-inline-item dropdown nav-link-list">
 						    <a class="nav-link text-grey" href="" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<div class="text-center d-block d-lg-none">
 								<div><i class="fas fa-user fa-lg text-grey"></i></div>
-                  <p class="my-0 text-grey">My Account</p>
+                  <p class="text-grey">My Account</p>
                 </div>
               </a>
               <div class="dropdown-menu border-0 bg-primary" aria-labelledby="user-options">
@@ -29,11 +35,11 @@
                 {% endif %}
               </div>
               </li>
-              <li class="list-inline-item">
-                <a href="{% url 'get_bag' %}" class="d-flex d-lg-none mr-3">
+              <li class="list-inline-item nav-link-list">
+                <a href="{% url 'get_bag' %}" class="d-block d-lg-none">
                   <div class="text-center">
                     <div><i class="fas fa-shopping-bag fa-lg text-grey"></i></div>
-                    <p class="text-grey my-0">
+                    <p class="text-grey">
                       {% if total %}
                     £{{ total|floatformat:2 }}
                     {% else %}
@@ -43,24 +49,5 @@
                   </div>
                   </a>
                 </li>
-            <!-- Mobile Nav  -->
-              <div id="main-nav" class="collapse navbar-collapse">
-                <ul class="navbar-nav w-auto mx-auto d-block d-lg-none">
-                    <li class="nav-item dropdown">
-                      <a href="{% url 'home' %}" class="dropdown-item">Home</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a href="{% url 'games' %}" class="dropdown-item">Games</a>
-                    </li>
-                    <li class="nav-item dropdown">
-							          <div class="col-12">
-                          <form class="form-inline my-0 my-lg-0"  method="GET" action="{% url 'games' %}">
-                          <input class="form-control w-80 search" type="text" placeholder="Search"/>
-                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                          </form>
-                        </div>
-                    </li>
-                  </ul>
-              </div>
-              
+    
             </nav>

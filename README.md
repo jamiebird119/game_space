@@ -40,6 +40,15 @@ delivery.
 Follow the link for a full list of user stories -
 **UserStories**(#https://docs.google.com/spreadsheets/d/1BrhNhX1Fiv-3raMT9crMyYyqyEfbfkIgaHa_c50PAEY/edit?usp=sharing)
 
+
+### Design
+Axure was used to create detailed wireframes for all resolutions. 
+
+#### Theme
+Bootswatch darkly was used for a general dulcet theme and styling with majority of elements following this format for a consistent 
+and crisp user experience. 
+
+
 Game images and info from Steam.com
 Swtich game info from https://store.nintendo.co.uk/games/nintendo-switch/view-all.list
 

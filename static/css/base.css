@@ -6,6 +6,15 @@
     background: #222;
     width:100%;
 }
+
+.nav-link-list{
+    margin: 0 auto;
+}
+
+.mobile-spacer{
+    margin-top: 5rem;
+}
+
 .logo-image{
     border-radius: 50%;
     height: auto;
@@ -209,7 +218,10 @@ The emerging W3C standard that is currently Firefox-only */
 
 @media (max-width: 1024px) {
     .page-header{
-    height: 260px;
+    height: 50px;
+    }
+    .table-font{
+        font-size: 10px;
     }
     .sidenav {
         height: 100vh-170px;

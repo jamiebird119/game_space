@@ -25,18 +25,18 @@
           {% for item in bag_items %}
           <tr class="table-secondary">
             <td class="w-25" scope="row">
-              <p>
+              <p class="table-font">
                 {{item.game.name}}<br />
                 on {{item.console.friendly_name}}
               </p>
             </td>
-            <td class="w-25">
+            <td>
               <a href="{% url 'game_details' item.game.id %}"><img src="{{item.game.image.url}}" class="rounded img-fluid" alt="{{item.game.name}}"/></a>
             </td>
             <td>{% if item.discount_price %}
-                <del>£{{ item.game.price |floatformat:2 }}</del> £{{ item.discount_price |floatformat:2 }}
+                <p class="table-font"><del>£{{ item.game.price |floatformat:2 }}</del> £{{ item.discount_price |floatformat:2 }}</p>
                 {% else %}
-                £{{ item.game.price |floatformat:2 }}
+                <p class="table-font">£{{ item.game.price |floatformat:2 }}</p>
                 {% endif %}</td>
             <td>
               <form class="update-form form" action="{% url 'adjust_bag' item.game_id %}" method="POST">
@@ -58,19 +58,22 @@
             </td>
           </tr>
           {% endfor %}
+          <tfoot>
           <tr class="table-secondary">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td> Delivery Total : £{% if delivery %}{{ delivery|floatformat:2 }}{% else %}0.00{% endif %} <br>
+          <th></th>
+          <th></th>
+          <th colspan="4">          
+           {% if delivery %} Delivery Total : £{{ delivery|floatformat:2 }}{% else %}0.00{% endif %} <br>
            {% if discount_total %}
-            Grand Total: <del> £{{ grand_total|floatformat:2 }} </del>  £{{ discount_total|floatformat:2 }}</h5>
+           <h5> Grand Total: <del> £{{ grand_total|floatformat:2 }} </del>  £{{ discount_total|floatformat:2 }}</h5>
             <br> {{ discount }} - applied successfully!
             {% else %}
             Grand Total: £{{ grand_total|floatformat:2 }}
             {% endif %}
-           <td><a href="{% url 'checkout' %}" class="btn btn-success">Checkout <i class="fas fa-lock"></i></a></td>
+           <a href="{% url 'checkout' %}" class="btn btn-success">Checkout <i class="fas fa-lock"></i></a>
+           </th>
+           </tr>
+           </tfoot>
         </tbody>
       </table>
     </div>
