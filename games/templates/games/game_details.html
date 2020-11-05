@@ -17,10 +17,10 @@
       {% if game.image %}
         <img
           class="rounded mx-auto my-2 game-image"
-          src="{{MEDIA_URL}}/{{game.image}}"
+          src="{{MEDIA_URL}}{{game.image}}"
         />
         {% else %}
-        <img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}/noimage.png" alt="{{ game.name }}">
+        <img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ game.name }}">
         {% endif %}
     </div>
     <div class="col-12 col-md-6">
