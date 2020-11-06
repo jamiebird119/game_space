@@ -9,7 +9,7 @@ can easily set up twitch streaming for their games too.
 1. [**UX**](#ux)
     - [**User Stories**](#user-stories)
     - [**Design**](#design)
-        - [**Colour Scheme**](#colour-scheme)
+        - [**Themes**](#themes)
         - [**Wireframes**](#wireframes)
         - [**Icons**](#icons)
 
@@ -17,6 +17,7 @@ can easily set up twitch streaming for their games too.
     - [**Existing Features**](#existing-features)
     - [**Features left to implement**](#features-left-to-implement)
     - [**Technologies Used**](#technologies-used)
+
 3. [**Testing**](#testing)
 
 4. [**Deployment**](#deployment)
@@ -59,5 +60,5 @@ When using the Payment Intents API with Stripe's client libraries and SDKs, ensu
 Authentication flows are triggered when required (use the regulatory test card numbers and PaymentMethods.)
 No authentication (default U.S. card): 4242 4242 4242 4242.
 Authentication required: 4000 0027 6000 3184.
-The PaymentIntent is created with an idempotency key to avoid erroneously creating duplicate PaymentIntents for the same purchase.
+The PaymentIntent is created with an id empotency key to avoid erroneously creating duplicate PaymentIntents for the same purchase.
 Errors are caught and displayed properly in the UI.

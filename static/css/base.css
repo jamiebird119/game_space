@@ -1,56 +1,56 @@
-.logo-text{
+.logo-text {
   text-transform: uppercase;
 }
 
-.logo-link{
-    background: #222;
-    width:100%;
+.logo-link {
+  background: #222;
+  width: 100%;
 }
 
-.nav-link-list{
-    margin: 0 auto;
+.nav-link-list {
+  margin: 0 auto;
 }
 
-.mobile-spacer{
-    margin-top: 5rem;
+.mobile-spacer {
+  height: 4.6875rem;
 }
 
-.logo-image{
-    border-radius: 50%;
-    height: auto;
-    width: 70px;
-    opacity: 0.9;
+.logo-image {
+  border-radius: 50%;
+  height: auto;
+  width: 70px;
+  opacity: 0.9;
 }
-.text-grey{
+.text-grey {
   color: #cccccc;
 }
 
-.search{
-  width:70%;
+.search {
+  width: 70%;
 }
 
-hr{
-    border:#444 0.5px solid;
+hr {
+  border: #444 0.5px solid;
 }
-.border-grey{
-    border:#444 1px solid;
+.border-grey {
+  border: #444 1px solid;
 }
-.page-header{
-    height: 170px
-}
-
-.game-card{
-    max-width:22rem;
-    height: 270px;
-}
-.game-name{
-    padding: 0;
+.page-header {
+  height: 0 px;
 }
 
-.game-name h5{
-    color: #cccccc;
-    display: inline-block;
-    text-align: center;
+.game-card {
+  max-width: 22rem;
+  height: 270px;
+}
+.game-name {
+  padding: 0;
+}
+
+.game-name h5 {
+  color: #cccccc;
+  display: inline-block;
+  text-align: center;
 }
 
 .game-name:hover {
@@ -58,94 +58,90 @@ hr{
   color: #cccccc;
   text-decoration: underline;
 }
-.game-image{
-height: 200px;
-width: auto;
-margin: 0 auto;
-display: block;
+.game-image {
+  height: 200px;
+  width: auto;
+  margin: 0 auto;
+  display: block;
 }
 
-.game-details{
-    border-left: 1px solid #444;
-    border-right: 1px solid #444;
-    border-bottom: 1px solid #444;
-
+.game-details {
+  border-left: 1px solid #444;
+  border-right: 1px solid #444;
+  border-bottom: 1px solid #444;
 }
-.nav-tabs{
-    border-bottom: None;
+.nav-tabs {
+  border-bottom: None;
 }
 .nav-link:hover {
   text-decoration-color: #cccccc;
   color: #cccccc;
   text-decoration: underline;
 }
-.description{
-    display: inline-block;
-    height: 5.5rem;
-    overflow-y: auto;
+.description {
+  display: inline-block;
+  height: 5.5rem;
+  overflow-y: auto;
 }
 
-.qty-select{
-    width:50%;
-    text-align: center;
+.qty-select {
+  width: 50%;
+  text-align: center;
 }
 
-.twitch_id{
-    min-height: 90px;
+.twitch_id {
+  min-height: 2.5rem;
 }
 
-.user-image{
-    max-width: 300px;
-    max-height: 200px;
-    height: auto;
+.user-image {
+  max-width: 300px;
+  max-height: 200px;
+  height: auto;
 }
 
-.side-nav-image{
-    max-width: 150px;
-    max-height: 150px;
+.side-nav-image {
+  max-width: 150px;
+  max-height: 150px;
 }
 /* Toast messages (arrow taken from CI Ecommerce project)*/
-.arrow-up {
-    width: 0; 
-    height: 0; 
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent; 
-    border-bottom: 10px solid black;
-    position: absolute;
-    top: -10px;
-    right: 72px;
-}
 
-.message-container{
-position: fixed;
-top: 100px;
-right: 5px;
-z-index: 999;
+.message-container {
+  position: fixed;
+  top: 11.4375rem;
+  right: 5px;
+  z-index: 999;
 }
-.alert{
-    width: 15rem;
+.alert {
+  width: 15rem;
 }
 
 .toast-header {
-    color: #404040;
-    background-color: inherit;
-    border: 0;
+  color: #404040;
+  background-color: inherit;
+  border: 0;
 }
 
 .alert-success hr {
-    border: #404040 0.5px solid; 
+  border: #404040 0.5px solid;
 }
-.alert-dismissible{
-    padding-right: 1.25rem;
-    border: 2.5px solid #000;
-    max-height: 75vh;
-    overflow: auto;
-}
-
-.delivery-info{
-    color:#404040;
+.alert-dismissible {
+  padding-right: 1.25rem;
+  border: 2.5px solid #000;
+  max-height: 75vh;
+  overflow: auto;
 }
 
+.delivery-info {
+  color: #404040;
+}
+
+.table-font {
+  font-size: 10px;
+}
+.table {
+  table-layout: fixed;
+  width: 100%;
+}
 
 /* Scrollbar editor from https://www.digitalocean.com/community/tutorials/css-scrollbars
 The emerging W3C standard that is currently Firefox-only */
@@ -172,14 +168,15 @@ The emerging W3C standard that is currently Firefox-only */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
-  top: 107px; /* Stay under top navbar */
-  bottom:0;
+  top: 11.3125rem; /* Stay under top navbar */
+  bottom: 0;
   left: 0;
   background-color: #375a7f;
   overflow-x: hidden; /* Disable horizontal scroll */
   overflow-y: scroll;
   padding: 60px 0; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  height: calc(100vh-170px);
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -196,45 +193,73 @@ The emerging W3C standard that is currently Firefox-only */
   margin-left: 50px;
   color: #cccccc;
 }
-.closebtn:hover{
-    color:black;
-    text-decoration: none;
+.closebtn:hover {
+  color: black;
+  text-decoration: none;
 }
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
   padding: 20px;
 }
 
-.stream-image:hover{
-    opacity: 0.4;
+.stream-image:hover {
+  opacity: 0.4;
 }
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-  
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }
 
-@media (max-width: 1024px) {
-    .page-header{
-    height: 50px;
-    }
-    .table-font{
-        font-size: 10px;
-    }
-    .sidenav {
-        height: 100vh-170px;
-        top: 180px;
-    }
+/* Media just for Iphone X becuase it doesnt conform to other queries when horizontal */
+@media only screen and (min-width: 812px) and (max-height: 375px) { 
+  .page-header {
+    height: 0 px;
+  }
+}
 
-    .message-container{
-        top:170px;
-    }
-    .arrow-up{
-        right:54px;
-    }
-    .game-image{
-        height: 150px;
-    }
+@media only screen and (min-width: 769px) and (min-height:376px) {
+  .page-header {
+    height: 9rem;
+  }
+  .table-font {
+    font-size: 16px;
+  }
+  .sidenav {
+    top: 10.9375rem;
+  }
+}
+
+@media only screen and (min-width: 1023px) {
+  .page-header {
+    height: 4.1875rem;
+  }
+  .message-container {
+    top: 9.1rem;
+  }
+  .sidenav {
+    top: 8rem;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .page-header {
+    height: 2rem;
+  }
+
+  .message-container {
+    top: 6.625rem;
+  }
+
+  .game-image {
+    height: 150px;
+  }
+  .sidenav {
+    top: 6.625rem;
+  }
 }

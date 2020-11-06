@@ -52,7 +52,7 @@
     <title>{% block head_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid ">
+    <header class="container-fluid px-0 ">
       <div id="topnav" class="row d-none d-lg-flex row navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
         <div class="col-lg-3">
           <div class="row">
@@ -87,7 +87,7 @@
           <ul class="list-unstyled pb-0 mb-2 float-right mr-4">
             <li class="list-inline-item dropdown">
               <a
-                class="nav-link text-grey"
+                class="nav-link text-grey p-0 mr-3"
                 href=""
                 id="user-options"
                 data-toggle="dropdown"
@@ -132,9 +132,7 @@
           </ul>
         </div>
       </div>
-      <div class="row">
-        {% include 'includes/mobile-nav.html' %}
-      </div>
+      {% include 'includes/mobile-nav.html' %}
       {% if messages %}
     <div class="message-container">
         <!-- Taken from base.html of CI Ecommerce project -->
@@ -153,18 +151,20 @@
         {% endfor %}
     </div>
     {% endif %}
-      <div class="row"> 
-        {% include 'includes/side-nav.html' %}
-        <div class="col-10 col-md-8 alert alert-info text-center" data-autohide="false">
-            <h6 class="my-auto">Free delivery on all orders over £{{ free_delivery_threshold|floatformat:2}}. Start shopping now to receive your discount!</h6>
-        </div>
-      </div>
-    </header>
-     
+    
+</header>
 
     {% block page_header %} 
     {% endblock %} 
-    
+
+    <div class="row no-gutters">
+        <div class="col-2">
+        {% include 'includes/side-nav.html' %}
+        </div>
+        <div class="col-10 alert alert-info text-center p-2" data-autohide="false">
+            <h6 class="my-auto ">Free delivery on all orders over £{{ free_delivery_threshold|floatformat:2}}. Start shopping now to receive your discount!</h6>
+        </div> 
+    </div>
 
     {% block content %} 
     {% endblock %}
