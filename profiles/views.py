@@ -3,7 +3,13 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from checkout.models import Order
 from django.contrib import messages
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
+import datetime
+import json
+import base64
+import hmac
+
 # Create your views here.
 
 
@@ -37,6 +43,7 @@ def add_profile_photo(request):
     orders = profile.orders.all()
     if request.method == 'POST':
         image_file = request.FILES["user_image"]
+        post_image_file(image_file)
         profile.user_image = image_file
         profile.save()
         messages.success(
@@ -65,3 +72,5 @@ def order_history(request, order_number):
         'from_profile': True,
     }
     return render(request, template, context)
+
+
