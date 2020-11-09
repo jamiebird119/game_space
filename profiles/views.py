@@ -9,6 +9,7 @@ import datetime
 import json
 import base64
 import hmac
+import requests
 
 # Create your views here.
 
@@ -74,3 +75,32 @@ def order_history(request, order_number):
     return render(request, template, context)
 
 
+def post_image_file(image):
+    date = str(datetime.date.today()).replace("-", "")
+
+    post_policy = {"expiration": "2099-12-01T12:00:00.000Z",
+                   "conditions": [
+                       {"bucket": settings.AWS_S3_CUSTOM_DOMAIN},
+                       ["starts-with", "$key", "profile-images/"],
+                       {"acl": "public-read"},
+                       {"success_action_redirect": "https://game-space-ecommerce.herokuapp.com/profiles/profile/"},
+                       ["starts-with", "$Content-Type", "image/"],
+                       {"x-amz-meta-uuid": "14365123651274"},
+                       {"x-amz-server-side-encryption": "AES256"},
+                       ["starts-with", "$x-amz-meta-tag", ""],
+                       {"x-amz-credential": f"{settings.AWS_STORAGE_BUCKET_NAME}/{date}/{settings.AWS_S3_REGION_NAME}/s3/aws4_request"},
+                       {"x-amz-algorithm": "AWS4-HMAC-SHA256"},
+                       {"x-amz-date": f"{date}T12:00:00.000Z"}
+                   ]
+                   }
+    headers = {
+        'key': 'profile_images/',
+        'policy': base64.b64encode(json.dumps(post_policy).encode('utf-8')),
+        'x-amz-algorithm':"AWS4-HMAC-SHA256",
+        'x-amz-credential': f"{settings.AWS_STORAGE_BUCKET_NAME}/{date}/{settings.AWS_S3_REGION_NAME}/s3/aws4_request",
+        'x-amz-date':f"{date}T12:00:00.000Z",
+        'x-amz-signature': hmac.new(f"{settings.AWS_STORAGE_BUCKET_NAME}/{date}/{settings.AWS_S3_REGION_NAME}/s3/aws4_request").hexdigest(),
+        'file': image,
+    }
+    x = requests.post(url="", data=headers)
+    print(x)
