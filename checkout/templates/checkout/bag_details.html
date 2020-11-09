@@ -18,9 +18,10 @@
         </div>
         <div class="col-7">
         {% if item.game.image %}
-            <a href="{% url 'game_details' item.game.id %}"><img src="{{MEDIA_URL}}{item.game.image}}" class="rounded img-fluid" alt="{{item.game.name}}"/></a>
+            <a href="{% url 'game_details' item.game.id %}"><img src="{{MEDIA_URL}}{{item.game.image}}" class="rounded img-fluid" alt="{{item.game.name}}"/></a>
         {% else %}
             <a href="{% url 'game_details' item.game.id %}"><img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ game.name }}"></a>
+        {% endif %}
         </div>
         </div>
         <hr>

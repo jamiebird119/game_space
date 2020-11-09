@@ -66,7 +66,9 @@
 		</div>
 		<hr>
 		<div class="row">
+        <div class="col-12">
 			<h5 class="my-2"> Order History</h5>
+        </div>
                 {% if orders %}
                 <table class="table table-hover">
                     <thead>
@@ -111,7 +113,9 @@
                     {% endfor %}
                 </table>
                 {% else %}
+                <div class="col-12">
                 <h4> You have not yet places any orders </h4>
+                </div>
                 {% endif %}
             </div>
             </div>

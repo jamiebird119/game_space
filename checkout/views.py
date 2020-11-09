@@ -35,7 +35,6 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
-    stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     bag_info = bag_contents(request)
     if request.POST:
@@ -88,7 +87,7 @@ def checkout(request):
                         order_line_item.save()
                 except Game.DoesNotExist:
                     messages.error(request, (
-                        "One of the gamess in your bag wasn't found in our database. "
+                        "One of the games in your bag wasn't found in our database. "
                         "Please call us for assistance!")
                     )
                     order.delete()

@@ -22,9 +22,9 @@
 			<div class="row">
 				<form method="POST" action="{% url 'get_discount' %}" class=" mx-3 my-3 d-flex">	
                     {% csrf_token %}
-					<input class="form-control" type="text" name="discount-code" placeholder="Type code here"{% if discount %} disabled {% endif %}/>
+					<input class="form-control" type="text" name="discount-code" placeholder="Type code here"{% if discount %}disabled{% endif %}/>
                     <input type="hidden" name="redirect_url" value="{{request.path}}"/>
-                    <button class="btn {% if discount %} btn-disabled {% else %} btn-info {% endif %} mx-2 px-2 discount-button" type="submit" {% if discount %} disabled {% endif %}> Apply </button>
+                    <button class="btn {% if discount %} btn-disabled {% else %} btn-info {% endif %} mx-2 px-2 discount-button" type="submit" {% if discount %}disabled{% endif %}> Apply </button>
 				</form>
 			</div>
 			<form method="POST" action="{% url 'checkout' %}" id="payment-form">
