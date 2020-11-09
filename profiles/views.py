@@ -3,13 +3,8 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from checkout.models import Order
 from django.contrib import messages
-from django.conf import settings
 from django.contrib.auth.decorators import login_required
-import datetime
-import json
-import base64
-import requests
-import hashlib
+
 
 # Create your views here.
 
