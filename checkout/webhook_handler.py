@@ -25,13 +25,12 @@ class StripeWH_Handler():
     def _send_confirmation_email(self, order):
         cust_email = order.email
         subject = render_to_string(
-            'checkout/confirmation_email_subject.txt',
-            {"order", order}
+            'checkout/confirmation_emails/confirmation_email_subject.txt',
+            {"order": order}
         )
         body = render_to_string(
-            'checkout/confirmation_email_body.txt',
-            {"order", order},
-            {"contact_email", settings.DEFAULT_FROM_EMAIL}
+            'checkout/confirmation_emails/confirmation_email_body.txt',
+            {"order": order, "contact_email": settings.DEFAULT_FROM_EMAIL}
         )
         send_mail(
             subject,
@@ -50,9 +49,11 @@ class StripeWH_Handler():
         shipping_details = intent.charges.data[0].shipping
         grand_total = round(intent.charges.data[0].amount/100)
         if 'discount' in intent.metadata:
-            discount = intent.metadata.discount 
-        else: 
+            discount = intent.metadata.discount
+            print(discount)
+        else:
             discount = None
+            print("none")
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
@@ -106,7 +107,7 @@ class StripeWH_Handler():
                 order = Order.objects.create(
                     full_name=shipping_details.name,
                     email=billing_details.email,
-                    user_profile=profile,
+                    user=profile,
                     phone_number=shipping_details.phone,
                     country=shipping_details.address.country,
                     postcode=shipping_details.address.postal_code,
@@ -161,7 +162,7 @@ class StripeWH_Handler():
             except Exception as e:
                 if order:
                     order.delete()
-                print(f'Error as:{e}')
+                print(f'Error as: {e}')
                 return HttpResponse(content=f'An error has occured: {event["type"]} | ERROR', status=500)
         self._send_confirmation_email(order)
         return HttpResponse(
