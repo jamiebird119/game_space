@@ -12,7 +12,7 @@ class UserProfile(models.Model):
     user_image = models.ImageField(upload_to="profile_images", blank=True)
     default_full_name = models.CharField(
         max_length=50, blank=True, default="", null=True)
-    default_email = models.EmailField(max_length=254, blank=True)
+    default_email = models.EmailField(max_length=254, blank=True, null=True)
     default_phone_number = models.CharField(
         max_length=20, blank=True, null=True)
     default_country = CountryField(
