@@ -28,10 +28,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEVELOPMENT = os.environ.get('DEVELOPMENT')
-if DEVELOPMENT:
-    DEBUG = True
-else:
-    DEBUG = False
+# if DEVELOPMENT:
+DEBUG = True
+# else:
+#    DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', 'game-space-ecommerce.herokuapp.com']
 
