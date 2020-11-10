@@ -49,7 +49,10 @@ class StripeWH_Handler():
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.charges.data[0].shipping
         grand_total = round(intent.charges.data[0].amount/100)
-        discount = intent.metadata.discount or None
+        if 'discount' in intent.metadata:
+            discount = intent.metadata.discount 
+        else: 
+            discount = None
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
