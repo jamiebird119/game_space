@@ -30,7 +30,7 @@
 			<div class="form-group mt-2">
                 <p> Current File: <a class="display-inline" target="_blank" href="{{ profile.user_image.url }}">{{ profile.user_image }}</a></p>
 				<label for="ProfileImageInputFile">Change your profile image here. </label>
-				<input name="user_image" type="file" class="form-control-file" id="ProfileImageInputFile" aria-describedby="fileHelp" value="{{profile.user_image.url}}">
+				<input name="user_image" type="file" class="form-control-file" aria-describedby="fileHelp" value="{{profile.user_image.url}}">
             </div>
             <button class="btn btn-success float-left" type="submit">Change Profile Photo</button>
             </form>
@@ -40,7 +40,7 @@
             {% csrf_token %}
 			<div class="form-group mt-2">
 				<label for="ProfileImageInputFile">Upload your profile image here. </label>
-				<input name="user_image" type="file" class="form-control-file" id="ProfileImageInputFile" aria-describedby="fileHelp">
+				<input name="user_image" type="file" class="form-control-file" aria-describedby="fileHelp">
             </div>
             <button class="btn btn-success float-left" type="submit">Upload Profile Photo</button>
             </form>
@@ -83,15 +83,15 @@
                     <tr class="table-primary">
                         <td> <a href="{% url 'order_history' order.order_number %}">{{ order.order_number|truncatechars:10}}</a></td>
                         <td class="d-none d-md-block"> {{ order.date }} </td>
-                        <td> {% if order.discount %}
+                        <td><h5> {% if order.discount %}
                             Delivery: £{{ order.delivery_cost|floatformat:2}}<br>
 							Grand Total: <del> £{{ order.grand_total|floatformat:2 }} </del>
-							£{{ order.discount_total|floatformat:2 }}</h5>
+							£{{ order.discount_total|floatformat:2 }}
 							<br> {{ order.discount }} - applied successfully!
                             {% else %}
                             Delivery: £{{ order.delivery_cost|floatformat:2}}<br>
                             Grand Total: £{{ order.grand_total|floatformat:2 }}
-                            {% endif %}</td>
+                            {% endif %}</h5></td>
                         <td><a id="button_{{order.order_number}}" onclick="toggleDetails('{{order.order_number}}')" class="btn btn-secondary float-right"> View details <i class="fas fa-arrow-down"></i></a></td>
                     </tr>
                     <tbody id="{{order.order_number}}" class="d-none">
@@ -124,5 +124,6 @@
 {% block postloadjs %}
             {{ block.super }} 
             <script src="{% static 'js/form-input.js' %}" type="text/javascript"></script>
+            <script src="{% static 'checkout/js/country_field.js' %}" type="text/javascript"></script>
             <script src="{% static 'profiles/js/toggle_details.js' %}" type="text/javascript"></script>
 {% endblock %}

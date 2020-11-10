@@ -1,37 +1,47 @@
 {% extends 'base.html' %}{% load static %} {% block page_header %}
+
 <div class="page-header"></div>
 {% endblock %} {% block content %}
+
 <div class="container">
-  <div class="row border-grey">
-    <div class="col-12">
+	<div class="row border-grey">
+		<div class="col-12">
       {% include 'includes/twitch-game-nav.html' %}
     </div>
-  </div>
-  <div class="row text-center game-details">
-    <div class="col-12">
-      <h5 class="my-5">
+	</div>
+	<div class="row text-center game-details">
+		<div class="col-12">
+			<h5 class="my-5">
         Here are the Top Streamers for {{ game.name }}. Click your favourite
-        <strong class="text-success">Channel</strong>
+        
+				<strong class="text-success">Channel</strong>
         to see more!
-      </h5>
-    </div>
-    {% if streams %} {% for object in streams %}
-    <div class="col-12 col-md-6 col-lg-4 card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">
-          <a href="{% url 'get_stream' game.id object.username %}"
-            >{{ object.title }}
-          </a>
-        </h5>
-      </div>
-      <a href="{% url 'get_stream' game.id object.username %}"
-        ><img class="stream-image" src="{{object.thumbnail}}"
-      /></a>
-      <div class="card-body">
-        <p class="card-text">Streamer - {{ object.username }}<br /> Viewers - {{ object.viewers }}</p>
-      </div>
-    </div>
-    {% endfor %} {% endif %} {% if 'error' %} <div class="col-12 text-center"><h6 class="text-danger"> An Unexpected error has occured: {{ error }}</h6></div> {% endif %}
-  </div>
+      
+			</h5>
+		</div>
+        {% if streams %} {% for object in streams %}
+    
+		<div class="col-12 col-md-6 col-lg-4 card mb-3">
+			<div class="card-body">
+				<h5 class="card-title">
+					<a href="{% url 'get_stream' game.id object.username %}">{{ object.title }}</a>
+				</h5>
+			</div>
+			<a href="{% url 'get_stream' game.id object.username %}">
+				<img class="stream-image" src="{{object.thumbnail}}"/>
+			</a>
+			<div class="card-body">
+				<p class="card-text">Streamer - {{ object.username }}
+					<br /> Viewers - {{ object.viewers }}
+				</p>
+			</div>
+		</div>
+        {% endfor %} {% endif %} {% if 'error' %} 
+		<div class="col-12 text-center">
+			<h6 class="text-danger"> An Unexpected error has occured: {{ error }}</h6>
+		</div> {% endif %}
+  
+	</div>
   {% endblock %}
+
 </div>

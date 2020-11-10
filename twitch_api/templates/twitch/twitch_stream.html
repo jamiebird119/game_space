@@ -1,13 +1,16 @@
 {% extends 'base.html' %}{% load static %} {% block page_header %}
+
 <div class="page-header"></div>
 {% endblock %}
 
 {% block corejs %}
 {{ block.super }}
+
 <script src="https://embed.twitch.tv/embed/v1.js"></script>
 {% endblock %}
 
 {% block content %}
+
 <div class="container">
 	<div class="row border-grey">
 		<div class="col-12">
@@ -18,13 +21,14 @@
 		<div class="col-12 text-center px-0">
 			<div id="twitch-embed"></div>
 		</div>
-        <a class="btn btn-primary" href="{% url 'get_twitch' game.id%}">Return to Streams List </a>
+		<a class="btn btn-primary" href="{% url 'get_twitch' game.id%}">Return to Streams List </a>
 	</div>
 </div>
 {% endblock %}
 
 {% block postloadjs %}
-    <script type="text/javascript">
+    
+<script type="text/javascript">
         $(document).ready(function(){
             new Twitch.Embed("twitch-embed", {
         width: 1140,

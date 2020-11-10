@@ -1,98 +1,128 @@
 {% extends 'base.html' %} {% load static %} {% load bag_tools %}{% block page_header %}
+
 <div class="page-header"></div>
 {% endblock %} {% block content %}
+
 <div class="container">
-  <div class="row">
-    <div class="col-12 mb-2">
-      <h4 class="logo-text">Shopping Bag</h4>
-    </div>
-  </div>
-  <div class="row no-gutters">
+	<div class="row">
+		<div class="col-12 mb-2">
+			<h4 class="logo-text">Shopping Bag</h4>
+		</div>
+	</div>
+	<div class="row no-gutters">
     {% if bag_items %}
-    <div class="col-12">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th scope="col">Items</th>
-            <th scope="col"></th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Subtotal</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in bag_items %}
-          <tr class="table-secondary">
-            <td class="w-25" scope="row">
-              <p class="table-font">
-                {{item.game.name}}<br />
-                on {{item.console.friendly_name}}
-              </p>
-            </td>
-            <td>
-              <a href="{% url 'game_details' item.game.id %}"><img src="{{item.game.image.url}}" class="rounded img-fluid" alt="{{item.game.name}}"/></a>
-            </td>
-            <td>{% if item.discount_price %}
-                <p class="table-font"><del>£{{ item.game.price |floatformat:2 }}</del> £{{ item.discount_price |floatformat:2 }}</p>
-                {% else %}
-                <p class="table-font">£{{ item.game.price |floatformat:2 }}</p>
-                {% endif %}</td>
-            <td>
-              <form class="update-form form" action="{% url 'adjust_bag' item.game_id %}" method="POST">
-              {% csrf_token %}
-                  <input class="form-control form-control-sm qty-select d-inline" min="0" max="99" name="quantity" type="number" id="quantity" value="{{item.quantity}}"/>
-                  <input type="hidden" name="console" value="{{item.console.id}}"/>
-                  <a class="btn btn-info update-link d-inline" id="update_{{item.game_id}}" ><i class="fas fa-sync-alt"></i></a>
-              </form>
-            </td>
-            <td>{% if item.discount_price %}
-                <del>£{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}</del> £{{ item.discount_price | calc_subtotal:item.quantity |floatformat:2 }}
-                {% else %}
-                £{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}
-                {% endif %}</td>
-            <td>
-            <div class="remove_item text-center" data-console="{{ item.console }}" id="container_{{item.game_id}}">
-            <a class="btn btn-danger remove-item" id="remove_{{item.game_id}}" data-console="{{ item.console.id }}"><i class="fas fa-times"></i></a>
-            </div>
-            </td>
-          </tr>
-          {% endfor %}
-          <tfoot>
-          <tr class="table-secondary">
-          <th></th>
-          <th></th>
-          <th colspan="4">          
-           {% if delivery %} Delivery Total : £{{ delivery|floatformat:2 }}{% else %}0.00{% endif %} <br>
-           {% if discount_total %}
-           <h5> Grand Total: <del> £{{ grand_total|floatformat:2 }} </del>  £{{ discount_total|floatformat:2 }}</h5>
-            <br> {{ discount }} - applied successfully!
-            {% else %}
-            Grand Total: £{{ grand_total|floatformat:2 }}
-            {% endif %}
-           <a href="{% url 'checkout' %}" class="btn btn-success">Checkout <i class="fas fa-lock"></i></a>
-           </th>
-           </tr>
-           </tfoot>
-        </tbody>
-      </table>
-    </div>
+    
+		<div class="col-12">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Items</th>
+						<th scope="col"></th>
+						<th scope="col">Price</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Subtotal</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+                {% for item in bag_items %}
+          
+					<tr class="table-secondary">
+						<td class="w-25" scope="row">
+							<p class="table-font">
+                            {{item.game.name}}
+								<br />
+                            on {{item.console.friendly_name}}
+							</p>
+						</td>
+						<td>
+							<a href="{% url 'game_details' item.game.id %}">
+								<img src="{{item.game.image.url}}" class="rounded img-fluid" alt="{{item.game.name}}"/>
+							</a>
+						</td>
+						<td>{% if item.discount_price %}
+                
+							<p class="table-font">
+								<del>£{{ item.game.price |floatformat:2 }}</del> £{{ item.discount_price |floatformat:2 }}
+							</p>
+                            {% else %}
+                
+							<p class="table-font">£{{ item.game.price |floatformat:2 }}</p>
+                            {% endif %}
+						</td>
+						<td>
+							<form class="update-form form" action="{% url 'adjust_bag' item.game_id %}" method="POST">
+                            {% csrf_token %}
+                  
+								<input class="form-control form-control-sm qty-select d-inline" min="0" max="99" name="quantity" type="number" id="quantity" value="{{item.quantity}}"/>
+								<input type="hidden" name="console" value="{{item.console.id}}"/>
+								<a class="btn btn-info update-link d-inline" id="update_{{item.game_id}}" >
+									<i class="fas fa-sync-alt"></i>
+								</a>
+							</form>
+						</td>
+						<td>{% if item.discount_price %}
+                
+							<del>£{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}</del> £{{ item.discount_price | calc_subtotal:item.quantity |floatformat:2 }}
+                            {% else %}
+                            £{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}
+                            {% endif %}
+						</td>
+						<td>
+							<div class="remove_item text-center" data-console="{{ item.console }}" id="container_{{item.game_id}}">
+								<a class="btn btn-danger remove-item" id="remove_{{item.game_id}}" data-console="{{ item.console.id }}">
+									<i class="fas fa-times"></i>
+								</a>
+							</div>
+						</td>
+					</tr>
+                {% endfor %}
+          
+					<tfoot>
+						<tr class="table-secondary">
+							<th></th>
+							<th></th>
+							<th colspan="4">          
+                                    {% if delivery %} Delivery Total : £{{ delivery|floatformat:2 }}{% else %}0.00{% endif %} 
+								<br>
+                                    {% if discount_total %}
+           
+									<h5> Grand Total: 
+										<del> £{{ grand_total|floatformat:2 }} </del>  £{{ discount_total|floatformat:2 }}
+									</h5>
+									<br> {{ discount }} - applied successfully!
+                                    {% else %}
+                                    Grand Total: £{{ grand_total|floatformat:2 }}
+                                    {% endif %}
+           
+										<a href="{% url 'checkout' %}" class="btn btn-success">Checkout 
+											<i class="fas fa-lock"></i>
+										</a>
+									</th>
+								</tr>
+							</tfoot>
+						</tbody>
+					</table>
+				</div>
     {% else %}
-    <!-- Format taken from CI Ecommerce project -->
-    <div class="col-12">
-      <p>You have not currently added anything to your bag.</p>
-      <a class="btn btn-primary" href="{% url 'games' %}"> Return to Games </a>
-    </div>
+    
+				<!-- Format taken from CI Ecommerce project -->
+				<div class="col-12">
+					<p>You have not currently added anything to your bag.</p>
+					<a class="btn btn-primary" href="{% url 'games' %}"> Return to Games </a>
+				</div>
     {% endif %}
-  </div>
-</div>
+  
+			</div>
+		</div>
 
 {% endblock %}
 
 {% block postloadjs%}
 {{ block.super }}
 
-<script type="text/javascript">
+
+		<script type="text/javascript">
     // Based on javascript function in CI E-commerce project for remove and update//
     $(".remove-item").click(function(e){
         var csrfToken = "{{ csrf_token }}";

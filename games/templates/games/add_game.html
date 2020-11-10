@@ -1,34 +1,39 @@
 {% extends "base.html" %} {% load static %} {% block page_header %}
+
 <div class="page-header"></div>
 {% endblock %} {% block content %}
+
 <div class="container">
-<div class="row">
-    <div class="col">
-        <h5 class="my-2" > Product Management </h5>
-        <hr>
-        <h5 class="my-2"> Add a Game</h5>
-    </div>
-</div>
+	<div class="row">
+		<div class="col">
+			<h5 class="my-2" > Product Management </h5>
+			<hr>
+				<h5 class="my-2"> Add a Game</h5>
+			</div>
+		</div>
+	<form action="{% url 'add_game' %}" method="POST" class="w-50" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+  
+			<div class="form-group">
+            {{ field| as_crispy_field }}
+            </div>
+            {% endfor %}
 
-<form action="{% url 'add_game' %}" method="POST" class="w-50" enctype="multipart/form-data">
-{% csrf_token %}
-{% for field in form %}
-  <div class="form-group">
-    {{ field| as_crispy_field }}
-  </div>
+			<button type="submit" class="btn btn-success"> Save Game </button>
+			<a href="{% url 'home' %}" class="btn btn-secondary"> Return to Home Page 
+				<i class="fas fa-arrow-left"></i>
+			</a>
+	</form>
+    {% if error_list %}
 
-{% endfor %}
-<button type="submit" class="btn btn-success"> Save Game </button>
-<a href="{% url 'home' %}" class="btn btn-secondary"> Return to Home Page <i class="fas fa-arrow-left"></i></a>
-</form>
-{% if error_list %}
-<div class="error_list">
+	<div class="error_list"></div>
+    {% endif %}
 
-</div>
-{% endif %}
 </div>
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }} 
-<script src="{% static 'js/form-input.js' %}" type="text/javascript"></script>
+
+	<script src="{% static 'js/form-input.js' %}" type="text/javascript"></script>
 {% endblock %}

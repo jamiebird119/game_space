@@ -1,55 +1,65 @@
 <div class="col-12 d-lg-none text-center">
-					<a class="navbar-brand  mx-auto logo-link fixed-top" href="{% url 'home' %}">
-						<h2 class="logo-text text-grey mt-2"><strong>Game</strong><i>Space</i></h2>
-          </a>
-        </div>
-        <div class="mobile-spacer">
-      
-      </div>
-            <nav class="navbar d-lg-none navbar-dark bg-primary w-100">
-                <li class="list-inline-item nav-link-list">
-                <a href="{% url 'games' %}" class="d-block d-lg-none">
-                  <div class="text-center">
-                    <div><i class="fas fa-gamepad text-grey"></i></div>
-                    <p class="text-grey">
+	<a class="navbar-brand  mx-auto logo-link fixed-top" href="{% url 'home' %}">
+		<h2 class="logo-text text-grey mt-2">
+			<strong>Game</strong>
+			<i>Space</i>
+		</h2>
+	</a>
+</div>
+<div class="mobile-spacer"></div>
+<nav class="navbar d-lg-none navbar-dark bg-primary w-100">
+	<li class="list-inline-item nav-link-list">
+		<a href="{% url 'games' %}" class="d-block d-lg-none">
+			<div class="text-center">
+				<div>
+					<i class="fas fa-gamepad text-grey"></i>
+				</div>
+				<p class="text-grey">
                       Games
                     </p>
-                  </div>
-                  </a>
-                </li>
-                <li class="list-inline-item dropdown nav-link-list">
-						    <a class="nav-link text-grey" href="" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<div class="text-center d-block d-lg-none">
-								<div><i class="fas fa-user fa-lg text-grey"></i></div>
-                  <p class="text-grey">My Account</p>
-                </div>
-              </a>
-              <div class="dropdown-menu border-0 bg-primary" aria-labelledby="user-options">
+			</div>
+		</a>
+	</li>
+	<li class="list-inline-item dropdown nav-link-list">
+		<a class="nav-link text-grey" href="" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<div class="text-center d-block d-lg-none">
+				<div>
+					<i class="fas fa-user fa-lg text-grey"></i>
+				</div>
+				<p class="text-grey">My Account</p>
+			</div>
+		</a>
+		<div class="dropdown-menu border-0 bg-primary" aria-labelledby="user-options">
               {% if user.is_authenticated %}
                 {% if user.is_superuser %}
-                <a href="" class="dropdown-item text-grey">Product Management</a>
+                
+			<a href="" class="dropdown-item text-grey">Product Management</a>
                 {% endif %}
-                <a href="{% url 'profile' %}" class="dropdown-item text-grey">My Profile</a>
-                <a href="{% url 'account_logout' %}" class="dropdown-item text-grey">Logout</a>      
+                
+			<a href="{% url 'profile' %}" class="dropdown-item text-grey">My Profile</a>
+			<a href="{% url 'account_logout' %}" class="dropdown-item text-grey">Logout</a>      
                 {% else %}      
-                <a href="{% url 'account_signup' %}" class="dropdown-item text-grey">Register</a>
-                <a href="{% url 'account_login' %}" class="dropdown-item text-grey">Login</a>
+                
+			<a href="{% url 'account_signup' %}" class="dropdown-item text-grey">Register</a>
+			<a href="{% url 'account_login' %}" class="dropdown-item text-grey">Login</a>
                 {% endif %}
-              </div>
-              </li>
-              <li class="list-inline-item nav-link-list">
-                <a href="{% url 'get_bag' %}" class="d-block d-lg-none">
-                  <div class="text-center">
-                    <div><i class="fas fa-shopping-bag fa-lg text-grey"></i></div>
-                    <p class="text-grey">
+              
+		</div>
+	</li>
+	<li class="list-inline-item nav-link-list">
+		<a href="{% url 'get_bag' %}" class="d-block d-lg-none">
+			<div class="text-center">
+				<div>
+					<i class="fas fa-shopping-bag fa-lg text-grey"></i>
+				</div>
+				<p class="text-grey">
                       {% if total %}
                     £{{ total|floatformat:2 }}
                     {% else %}
                     £0.00
                     {% endif %}
                     </p>
-                  </div>
-                  </a>
-                </li>
-    
-            </nav>
+			</div>
+		</a>
+	</li>
+</nav>

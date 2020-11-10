@@ -1,99 +1,99 @@
 {% extends "base.html" %} {% load static %} {% block page_header %}
+
 <div class="page-header"></div>
 {% endblock %} {% block content %}
+
 <div class="container">
-  <div class="row border-grey">
-    <div class="col-12">
+	<div class="row border-grey">
+		<div class="col-12">
       {% include 'includes/twitch-game-nav.html' %}
     </div>
-  </div>
-  <div class="row game-details">
-    <div class="col-12 text-center my-2">
-      <h2 class="mt-2">{{ game.name }}</h2>
-      <hr />
-    </div>
-
-    <div class="col-12 col-md-6">
+	</div>
+	<div class="row game-details">
+		<div class="col-12 text-center my-2">
+			<h2 class="mt-2">{{ game.name }}</h2>
+			<hr />
+		</div>
+		<div class="col-12 col-md-6">
       {% if game.image %}
-        <img
-          class="rounded mx-auto my-2 game-image"
-          src="{{MEDIA_URL}}{{game.image}}"
-        />
+			<img class="rounded mx-auto my-2 game-image" src="{{MEDIA_URL}}{{game.image}}"/>
         {% else %}
-        <img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ game.name }}">
+			<img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ game.name }}">
         {% endif %}
-    </div>
-    <div class="col-12 col-md-6">
-      <ul class="list-unstyled">
-        <li>
-          <p>{{ game.description }}</p>
-        </li>
-        <li>
+    
+			</div>
+			<div class="col-12 col-md-6">
+				<ul class="list-unstyled">
+					<li>
+						<p>{{ game.description }}</p>
+					</li>
+					<li>
+						<p> Available on:{% for console in game.consoles.all %}
+							<a href="{% url 'games'%}?q={{console.name}}"> {{ console.friendly_name }}</a> {% endfor %} 
+						</p>
+					</li>
+					<li>
+						<p>
+                            Genres:{% for genre in game.genres.all %} 
+							<a href="{% url 'games'%}?q={{genre.name}}">{{ genre.friendly_name }}</a>
+                            {% endfor %}
+						</p>
+					</li>
+					<li>
+						<p>
+                            Publisher - {{game.publisher}}
+							<br />
+                            Released - {{game.release_year}} 
+							<br />
+                            Rating - {{ game.rating}}/100
           
-           <p> Available on:{% for console in game.consoles.all %}<a href="{% url 'games'%}?q={{console.name}}"> {{ console.friendly_name }}</a> {% endfor %} </p>
-          
-        </li>
-        <li>
-          <p>
-            Genres:{% for genre in game.genres.all %} <a href="{% url 'games'%}?q={{genre.name}}">{{ genre.friendly_name }}</a>
-            {% endfor %}
-          </p>
-        </li>
-        <li>
-          <p>
-            Publisher - {{game.publisher}}<br />
-            Released - {{game.release_year}} <br />
-            Rating - {{ game.rating}}/100
-          </p>
-        </li>
+						</p>
+					</li>
         {% if game.special_offer %}
-        <li>
-          <p>
-            Price: <del class="text-muted"> £{{ game.original_price }} </del>
-            <i class="fas fa-arrow-right"></i>
-            <strong> £{{game.price}} </strong> ({{game.offer_percentage}}% OFF!)
-          </p>
-        </li>
-        {% else %}
-        <li>Price - £{{ game.price}}</li>
-        <li>
-          {% endif %}
-        </li>
-
-        <li>
-          <form action="{% url 'add_to_bag' game.id %}" method="POST">
-            {% csrf_token %}
-            <div class="form-group my-3">
-              <select
-                class="custom-select"
-                name="console"
-                id="console_select"
-                data-item_id="{{game.id}}"
-                required
+        
+					<li>
+						<p>
+                            Price: 
+							<del class="text-muted"> £{{ game.original_price }} </del>
+							<i class="fas fa-arrow-right"></i>
+							<strong> £{{game.price}} </strong> ({{game.offer_percentage}}% OFF!)
+          
+						</p>
+					</li>
+                    {% else %}
+					<li>Price - £{{ game.price}}</li>
+                    {% endif %}
+					<li>
+						<form action="{% url 'add_to_bag' game.id %}" method="POST">
+                        {% csrf_token %}
+							<div class="form-group my-3">
+								<select class="custom-select" name="console" id="console_select" data-item_id="{{game.id}}" required>
+									<option disabled>Select Console</option>
+                                    {% for console in game.consoles.all %}                
+									<option value="{{console.id}}">      
+                                    {{ console.friendly_name }}</option>
+                                    {% endfor %}
+								</select>
+							</div>
+							<a class="btn btn-secondary" href="{% url 'games' %}"
               >
-                <option disabled>Select Console</option>
-                {% for console in game.consoles.all %}
-                <option value="{{console.id}}"
-                  >{{ console.friendly_name }}</option
-                >
-                {% endfor %}
-              </select>
-            </div>
-            <a class="btn btn-secondary" href="{% url 'games' %}"
-              ><i class="fas fa-chevron-left"></i> Continue Shopping
-            </a>
-            <button class="btn btn-primary" type="submit">Add to bag!</button>
-            <input type="hidden" name="redirect_url" value="{{request.path}}"/>
-            <input type="hidden" name="quantity" value="1"/>
-          </form>
-        </li>
+								<i class="fas fa-chevron-left"></i> Continue Shopping
+            
+							</a>
+							<button class="btn btn-primary" type="submit">Add to bag!</button>
+							<input type="hidden" name="redirect_url" value="{{request.path}}"/>
+							<input type="hidden" name="quantity" value="1"/>
+						</form>
+					</li>
         {% if request.user.is_superuser %}
-            <a class="btn btn-success" href="{% url 'edit_game' game.id %}">Edit Game</a>
-            <a class="btn btn-danger" href="{% url 'remove_game' game.id %}">Delete Game</a>
+            
+					<a class="btn btn-success" href="{% url 'edit_game' game.id %}">Edit Game</a>
+					<a class="btn btn-danger" href="{% url 'remove_game' game.id %}">Delete Game</a>
         {% endif %}
-      </ul>
-    </div>
-  </div>
+      
+				</ul>
+			</div>
+		</div>
 </div>
 
 {% endblock %}

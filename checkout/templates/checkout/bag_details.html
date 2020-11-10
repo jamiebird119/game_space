@@ -1,40 +1,57 @@
 {% load bag_tools %}
+
 <h4> Bag Items </h4>
-        <hr>
+<hr>
         
         {% for item in bag_items %}
-        <div class="row ">
-        <div class="col-5">
-            <p>
+        
+	<div class="row ">
+		<div class="col-5">
+			<p>
                 {{item.game.name}} on {{item.console.friendly_name}}
-                <br>
-                QTY - {{item.quantity}}<br>
+                
+				<br>
+                QTY - {{item.quantity}}
+					<br>
                 {% if item.discount_price %}
-                Price - <del>£{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}</del> £{{ item.discount_price | calc_subtotal:item.quantity |floatformat:2 }}
+                Price - 
+						<del>£{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}</del> £{{ item.discount_price | calc_subtotal:item.quantity |floatformat:2 }}
                 {% else %}
                 Price -  £{{ item.game.price | calc_subtotal:item.quantity |floatformat:2 }}
                 {% endif %}
-            </p>
-        </div>
-        <div class="col-7">
-        {% if item.game.image %}
-            <a href="{% url 'game_details' item.game.id %}"><img src="{{MEDIA_URL}}{{item.game.image}}" class="rounded img-fluid" alt="{{item.game.name}}"/></a>
-        {% else %}
-            <a href="{% url 'game_details' item.game.id %}"><img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ game.name }}"></a>
-        {% endif %}
-        </div>
-        </div>
-        <hr>
+            
+					</p>
+				</div>
+				<div class="col-7">
+                    {% if item.game.image %}
+					<a href="{% url 'game_details' item.game.id %}">
+						<img src="{{MEDIA_URL}}{{item.game.image}}" class="rounded img-fluid" alt="{{item.game.name}}"/>
+					</a>
+                    {% else %}
+            
+					<a href="{% url 'game_details' item.game.id %}">
+						<img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ game.name }}">
+						</a>
+                    {% endif %}
+        
+					</div>
+				</div>
+				<hr>
         {% endfor %}
-        <div class="col-12">
-            <h5> Delivery : £{{ delivery|floatformat:2  }}
-            <br>
-            {% if discount_total %}
-            Grand Total: <del> £{{ grand_total|floatformat:2 }} </del>  £{{ discount_total|floatformat:2 }}</h5>
-            <br> {{ discount }} - applied successfully!
-            {% else %}
-            Grand Total: £{{ grand_total|floatformat:2 }}
-            {% endif %}
-
-        </div>
-        <hr>
+        
+					<div class="col-12">
+						<h5> Delivery : £{{ delivery|floatformat:2  }}
+            
+							<br>
+                            {% if discount_total %}
+                            Grand Total: 
+								<del> £{{ grand_total|floatformat:2 }} </del>  £{{ discount_total|floatformat:2 }}
+							
+							<br> {{ discount }} - applied successfully!
+                            {% else %}
+                            Grand Total: £{{ grand_total|floatformat:2 }}
+                            {% endif %}
+                        </h5>
+        
+							</div>
+							<hr>
