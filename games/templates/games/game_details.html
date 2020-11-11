@@ -86,7 +86,6 @@
 						</form>
 					</li>
         {% if request.user.is_superuser %}
-            
 					<a class="btn btn-success" href="{% url 'edit_game' game.id %}">Edit Game</a>
 					<a class="btn btn-danger" href="{% url 'remove_game' game.id %}">Delete Game</a>
         {% endif %}
