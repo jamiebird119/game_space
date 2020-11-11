@@ -12,19 +12,22 @@ class UserProfile(models.Model):
     user_image = models.ImageField(upload_to="profile_images", blank=True)
     default_full_name = models.CharField(
         max_length=50, blank=True, default="", null=True)
-    default_email = models.EmailField(max_length=254, blank=True, null=True)
+    default_email = models.EmailField(
+        max_length=254, blank=True, null=True, default="")
     default_phone_number = models.CharField(
-        max_length=20, blank=True, null=True)
+        max_length=20, blank=True, null=True, default="")
     default_country = CountryField(
-        blank_label="Country", null=True, blank=True)
-    default_postcode = models.CharField(max_length=20, blank=True, null=True)
+        blank_label="Country", null=True, blank=True, default="")
+    default_postcode = models.CharField(
+        max_length=20, blank=True, null=True, default="")
     default_town_or_city = models.CharField(
-        max_length=40, blank=True, null=True)
+        max_length=40, blank=True, null=True, default="")
     default_street_address1 = models.CharField(
-        max_length=80, blank=True, null=True)
+        max_length=80, blank=True, null=True, default="")
     default_street_address2 = models.CharField(
-        max_length=80, blank=True, null=True)
-    default_county = models.CharField(max_length=80, null=True, blank=True)
+        max_length=80, blank=True, null=True, default="")
+    default_county = models.CharField(
+        max_length=80, null=True, blank=True, default="")
 
     def __str__(self):
         return self.user.username
