@@ -81,7 +81,7 @@
                     </thead>
                     {% for order in orders %}
                     <tr class="table-primary">
-                        <td> <a href="{% url 'order_history' order.order_number %}">{{ order.order_number|truncatechars:10}}</a></td>
+                        <td> <a targret="_blank" href="{% url 'order_history' order.order_number %}">{{ order.order_number|truncatechars:10}}</a></td>
                         <td class="d-none d-md-block"> {{ order.date }} </td>
                         <td><h5> {% if order.discount %}
                             Delivery: £{{ order.delivery_cost|floatformat:2}}<br>

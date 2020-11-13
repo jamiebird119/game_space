@@ -57,6 +57,10 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
             order.save()
+
+            # Grab the payment intent from the pid using Stripe API
+            # Confirm the ZIP code of that payment otherwise in the backend of Stripe it will appear incomplete
+
             for item in bag_info['bag_items']:
                 try:
                     game = get_object_or_404(Game, pk=item['game_id'])

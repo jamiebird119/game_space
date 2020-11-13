@@ -23,7 +23,7 @@ var style = {
   },
 };
 
-var card = elements.create("card", { style: style });
+var card = elements.create("card", {hidePostalCode: true, style: style });
 card.mount("#card-element");
 
 card.addEventListener("change", function (event) {
@@ -107,4 +107,3 @@ form.addEventListener("submit", function (ev) {
       location.reload();
     });
 });
-
