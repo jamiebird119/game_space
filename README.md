@@ -27,6 +27,13 @@ can easily set up twitch streaming for their games too.
 3. [**Testing**](#testing)
 
 4. [**Deployment**](#deployment)
+        - HomeApp
+        - GameApp
+        - Twitch_API App
+        - Bag App
+        - Checkout App
+        - Profiles App
+        - Development to Deployment
 
 5. [**Credits**](#credits)
 
@@ -58,7 +65,8 @@ Functional features required:
 
 Content required
 - A way for user to experience/connect with a game without buying it (through media).
-- Game images with consistent rounded edges. 
+- Media aimed at enthusing the emotional decision behind a purchase. 
+- Navigational streamlinging through a sidenav to allow easy use and efficiently transport users to the game they are interested in.
 
 ### User Stories
 Follow the link for a full list of user stories -
@@ -71,25 +79,18 @@ For information architecture see [**Database Schema**](#https://github.com/jamie
 ### Skeleton 
 For wireframes see
 
-
 ### Surface
 
-Search functionality 
-can be found in several places, including the sidenav and search function in the navbar the aim is to give the user a variety of easy ways to find 
-the exact product they want. Filter options also give the browsing user alternative ways to rank results. Each game can be selected to get more
-in depth information and to view twitch streams. The bag tools allow users to see what they currently are set to purchase and how much they have to spend to get free 
-delivery. 
 
-
-
-### Design
-Axure was used to create detailed wireframes for all resolutions. 
-
-#### Theme
+#### Design
+##### Theme
 Bootswatch darkly was used for a general dulcet theme and styling with majority of elements following this format for a consistent 
 and crisp user experience. Rounded images and use of cards for game details collate relavent information for the user.
 
-#### Icons
+##### Icons
+Font Awesome is used to provide iconography that is consistent and informs the user to increase the usability of the site. Branded logos 
+such as that of Playstation and Xbox were used from Font Awesome because of their notability and eyecatching familiarity assisting in giving the site purpose clearly
+and adding value to the products provided.
 
 ## Features
 
@@ -189,11 +190,96 @@ would allow a browsing user to see other games they may like increasing the like
 
 
 ### Technologies Used
-
+**HTML5, CSS3, Javascript, Python, Django**
+- The languages used to deliver the site and the full stack framework in python. 
+**Bootstrap**
+- Used to provide front end consistency and aesthetically pleasing visuals
+**Bootswatch Darkly**
+- Theme used for element specific styling and overall theme of site
+**JQuery + JqueryValidate**
+- Utilised in JS to assist interactive functionality. Validate specifically used for real time form validations
+**FontAwesome**
+- Icons included for UX purposes
+**AllAuth**
+- Provides user authentification functionality and handles issue to do with this.
+**CrispyForms**
+- Used to alter form imput fields and provide consistency
+**TwitchAPI**
+- Allows for streaming of live gameplay from twitch to an embed player
+**Stripe**
+- Processes payment intents and provides webhook functionality for ensuring order creation.
+**django-countries**
+- Alters country input field on forms
+**django-extensions**
+- Utilised to create database schema visualisation
+**psycopg and postgres**
+- Hosts deployed version database for all models.
+**Gunicorn**
+- Used in deployment in the procfile setup
+**smtp**
+- Provides send mail functionality
+**Amazon AWS S3**
+- Hosts static and media files for deployed site
+**Heroku**
+- Serves the deployed version of the site to the public
 
 ## Testing
 
-## Development
+## Deployment
+
+### Home App
+Once django was imported and installed, the first thing created was the home app. As part of this a simple view and url were created and a full base template upon which
+all future htmls would be built. This contained blocks for all major features and navigation and menu features present on each page. 
+
+### Game App
+The Game App followed this, with the creation of the Genre, Console and Game models. The genre and console models were linked by a many to many relationship 
+with the game model. With model data then loaded using fixtures this relationship had to be added manually later in the site admin page. For feasibility it was the most
+efficient method for the small sample data however for more extensive site data this ideally would be automated. 
+Using the newly made models, the game and game details pages were created to render data to the user. With this search query functionality was created to handle 
+keywords searches able to be matched to the name, description, console or genre of the game. In built filter select was added and a product count and search query 
+given to users to show in results what they were searching.  
+
+### Twitch API App
+From the game details page a smaller navigation was included to make space for the twitch area. Using the twitch developer page
+it became obvious that users first needed authorisation using an OAuth token. This was returned after setting up the required variables in twitch
+and used to return a set of stream data for a particular game_id. Initially prior to the development of the streams return, a snippet was prototyped in repl.it using a fixed token and the name of a game to return a game_id, which became 
+the basis for the return function used in product management when adding a new game. 
+The stream data could then be rendered to the stream.html with a stream_id variable used to create a link to each stream that would then be loaded in the embed player on twitch_stream.html. 
+(**NB** While each new user gets an OAuth token that is subsequently saved in the session cookies, it is not clear whether this value expires. Ideally code would be altered to included
+this possible eventuality but for now it serves the purpose)
+
+### Bag App
+The bag app was created and along with bag.html a context processor was created for the bag contents. The functionality to add items to the bag
+was also then added and to give each item a console and quantity. It was decided that items can only be added one at a time by the user instead of choosing a quantity, becuase how often would a user
+want several hard copies of a game on the same console. The value can be editted in the bag app however. Bag tools were also created to work out totals.
+
+### Checkout App
+This lead nicely on to the checkout app which was created. As part of this the first items initialised were the Order, Orderlineitem and Discount models all of which 
+would be necassary for full checkout. The OrderLineItem was an inline portion of the order model and was created for each item in a user bag. The Discount model was an optional 
+foreign key field on the order model. Discount were applied using a charfield primary key code, and a json field containing information on to what games the 
+discount applied. Due to the foreign key nature of the field it does mean that only one discount can be applied the a bag, however this is made aware to the user upon successful application 
+of a discount. Forms were then produced from the OrderModel and integrated with stripe to the checkout page. The stripe payment intent was set up along with 
+webhook and handler to process incomplete orders. 
+
+### Profiles App
+Lastly prior to deployment the profiles app was created with the UserProfile model being initialised first. This contains default information for the user
+which linked to checkout and could be saved by the user when checking out. The user profile page was created to take in form data if the user wanted to change this. 
+A profile image field was also added and could be updated using this profile page. This as it has been said earlier would be a precursor to a review section where the user image and review 
+would be shown on the game details page when they leave a review. 
+
+### Development to Deployment
+The site was originally developed on Gitpod and can be run locally using:
+`$ python3 manage.py runserver` 
+This was then pushed to a heroku provider available at 
+[GameSpace](#https://game-space-ecommerce.herokuapp.com/)
+
+The differences between the developmental and deployment version are as follows:
+- The developmental server hosts media and static files locally whereas the deployed version uses an Amazon S3 bucket for file hosting. 
+- In development emails sent to users are sent to the development console whereas in the deployed version the backend uses smtp to sent the emails to the user. 
+- On the developmental server an sql database is used where as on the deployed version a postgres database provides access to models. 
+(**NB** It is IMPORTANT to note that on the developmental server not all genre/console to game relationships have been fully implemented, as they have on the deployed site. The developemental version will not allow the username
+to add games without console values to the bag so if using dev version to test please use a game with a console value only!)
+- Finally debug is set to false on the deployed version and USE_AWS is set to True. 
 
 ## Media
 Game images and info for PC, PS and Xbox games from [Steam](#https://store.steampowered.com/)

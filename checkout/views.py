@@ -147,16 +147,20 @@ def checkout(request):
 
 def get_discount(request):
     discount_code = request.POST.get('discount-code')
-    discount = Discount.objects.all()
     redirect_url = request.POST.get('redirect_url')
-    for thing in discount:
-        if thing.code == discount_code:
+    try:
+        discount = Discount.objects.get(pk=discount_code)
+        if discount:
             request.session['discount'] = discount_code
             messages.success(
                 request, f'Successfully applied discount code: {discount_code}')
         else:
             messages.error(
                 request, f'Could not find discount_code: {discount_code}. Please check spelling and try again.')
+    except Exception as e:
+        print(f'Error : {e}')
+        messages.error(
+            request, f'Could not find discount_code: {discount_code}. Please check spelling and try again.')
     return redirect(redirect_url)
 
 
