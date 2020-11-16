@@ -1,4 +1,7 @@
 {% extends 'base.html' %} {% load static %}{% load bag_tools %}
+{% block head_title %}
+Profile Page for {{ profile.user }}
+{% endblock %}
 {% block extra_css %}
 {{ load.super }}
 <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}" />

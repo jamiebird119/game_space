@@ -27,13 +27,13 @@ can easily set up twitch streaming for their games too.
 3. [**Testing**](#testing)
 
 4. [**Deployment**](#deployment)
-        - HomeApp
-        - GameApp
-        - Twitch_API App
-        - Bag App
-        - Checkout App
-        - Profiles App
-        - Development to Deployment
+    - HomeApp
+    - GameApp
+    - Twitch_API App
+    - Bag App
+    - Checkout App
+    - Profiles App
+    - Development to Deployment
 
 5. [**Credits**](#credits)
 
@@ -70,7 +70,7 @@ Content required
 
 ### User Stories
 Follow the link for a full list of user stories -
-**UserStories**(#https://docs.google.com/spreadsheets/d/1BrhNhX1Fiv-3raMT9crMyYyqyEfbfkIgaHa_c50PAEY/edit?usp=sharing)
+[**UserStories**](#https://docs.google.com/spreadsheets/d/1BrhNhX1Fiv-3raMT9crMyYyqyEfbfkIgaHa_c50PAEY/edit?usp=sharing)
 
 
 ### Structure
@@ -277,13 +277,12 @@ The differences between the developmental and deployment version are as follows:
 - The developmental server hosts media and static files locally whereas the deployed version uses an Amazon S3 bucket for file hosting. 
 - In development emails sent to users are sent to the development console whereas in the deployed version the backend uses smtp to sent the emails to the user. 
 - On the developmental server an sql database is used where as on the deployed version a postgres database provides access to models. 
-(**NB** It is IMPORTANT to note that on the developmental server not all genre/console to game relationships have been fully implemented, as they have on the deployed site. The developemental version will not allow the username
-to add games without console values to the bag so if using dev version to test please use a game with a console value only!)
+(**NB** *It is IMPORTANT to note that on the developmental server not all genre/console to game relationships have been fully implemented, as they have on the deployed site. The developemental version will not allow the username to add games without console values to the bag so if using dev version to test please use a game with a console value only!*)
 - Finally debug is set to false on the deployed version and USE_AWS is set to True. 
 
 ## Media
-Game images and info for PC, PS and Xbox games from [Steam](#https://store.steampowered.com/)
-Switch game info from [Nintento](#https://store.nintendo.co.uk/games/nintendo-switch/view-all.list)
+Game images and info for PC, PS and Xbox games from [*Steam*](#https://store.steampowered.com/).
+Switch game info from [*Nintento*](#https://store.nintendo.co.uk/games/nintendo-switch/view-all.list)
 
 ## Acknowledgements
 Thanks to Reuben Ferrante for his help and input and the other tutors at Code Institute for their help and patience. 
