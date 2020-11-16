@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'storages',
-    'django_extensions',
     # my apps
     'home',
     'games',

@@ -80,8 +80,6 @@ For information architecture see [**Database Schema**](#https://github.com/jamie
 For wireframes see
 
 ### Surface
-
-
 #### Design
 ##### Theme
 Bootswatch darkly was used for a general dulcet theme and styling with majority of elements following this format for a consistent 
