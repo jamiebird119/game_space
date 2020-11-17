@@ -77,7 +77,7 @@ Follow the link for a full list of user stories -
 For information architecture see [**Database Schema**](#https://github.com/jamiebird119/game_space/blob/792ef9b4cec575be88bfac5a9415c218069f3f8a/database-schema.png)
 
 ### Skeleton 
-For wireframes see
+For wireframes see [wireframes-folder](#https://github.com/jamiebird119/game_space/blob/bcce69db511ec767cd7842d67e1c7cf19f2eb588/wireframes) on github.
 
 ### Surface
 #### Design
@@ -222,7 +222,7 @@ would allow a browsing user to see other games they may like increasing the like
 - Serves the deployed version of the site to the public
 
 ## Testing
-
+See [testing link](#https://docs.google.com/spreadsheets/d/1BrhNhX1Fiv-3raMT9crMyYyqyEfbfkIgaHa_c50PAEY/edit#gid=787376127) second tab with all details of testing.
 ## Deployment
 
 ### Home App
@@ -285,14 +285,3 @@ Switch game info from [*Nintento*](#https://store.nintendo.co.uk/games/nintendo-
 ## Acknowledgements
 Thanks to Reuben Ferrante for his help and input and the other tutors at Code Institute for their help and patience. 
 
-
-
-Test Stripe
-Payment Intents API
-When using the Payment Intents API with Stripe's client libraries and SDKs, ensure that:
-
-Authentication flows are triggered when required (use the regulatory test card numbers and PaymentMethods.)
-No authentication (default U.S. card): 4242 4242 4242 4242.
-Authentication required: 4000 0027 6000 3184.
-The PaymentIntent is created with an id empotency key to avoid erroneously creating duplicate PaymentIntents for the same purchase.
-Errors are caught and displayed properly in the UI.

@@ -51,10 +51,8 @@ class StripeWH_Handler():
         grand_total = round(intent.charges.data[0].amount/100)
         if 'discount' in intent.metadata:
             discount = intent.metadata.discount
-            print(discount)
         else:
             discount = None
-            print("none")
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
@@ -97,7 +95,6 @@ class StripeWH_Handler():
                 attempt += 1
                 time.sleep(1)
         if order_exists:
-            print("order exists")
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook success recieved: {event["type"]}| SUCCESS - Verified order already in database',
