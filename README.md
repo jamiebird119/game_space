@@ -209,7 +209,7 @@ would allow a browsing user to see other games they may like increasing the like
 **django-countries**
 - Alters country input field on forms
 **django-extensions**
-- Utilised to create database schema visualisation
+- Utilised to create database schema visualisation (Not used in deployed version)
 **psycopg and postgres**
 - Hosts deployed version database for all models.
 **Gunicorn**
@@ -284,8 +284,6 @@ Switch game info from [*Nintento*](#https://store.nintendo.co.uk/games/nintendo-
 
 ## Acknowledgements
 Thanks to Reuben Ferrante for his help and input and the other tutors at Code Institute for their help and patience. 
-
-
 
 
 

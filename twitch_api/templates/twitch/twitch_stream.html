@@ -24,6 +24,7 @@ Twitch Stream for Channel - {{ username }}
 	<div class="row">
 		<div class="col-12 text-center px-0">
 			<div id="twitch-embed"></div>
+            
 		</div>
 		<a class="btn btn-primary" href="{% url 'get_twitch' game.id%}">Return to Streams List </a>
 	</div>
@@ -35,10 +36,10 @@ Twitch Stream for Channel - {{ username }}
 <script type="text/javascript">
         $(document).ready(function(){
             new Twitch.Embed("twitch-embed", {
-        width: 1140,
-        max-width:100%,
-        height: 480,
+        width: "100%",
+        height: 500,
         channel: "{{ username }}",
-      })});
+      })
+      });
     </script>
 {% endblock %}
