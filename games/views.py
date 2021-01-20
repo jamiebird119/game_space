@@ -34,13 +34,12 @@ def games(request):
             games = games.order_by(sortkey)
         if 'q' in request.GET:
             query = request.GET['q']
-            if not query:
-                messages.error('You have not entered a search criteria!')
-                return redirect(reverse('games'))
-
             queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(
                 consoles__friendly_name__icontains=query) | Q(genres__name__icontains=query)
             games = games.filter(queries).distinct()
+            if query == "":
+                messages.warning(request, 'You have not entered a search criteria!')
+                return redirect(reverse('games'))
 
     current_sorting = f'{sort}_{direction}'
     context = {

@@ -70,14 +70,14 @@ Content required
 
 ### User Stories
 Follow the link for a full list of user stories -
-[**UserStories**](#https://docs.google.com/spreadsheets/d/1BrhNhX1Fiv-3raMT9crMyYyqyEfbfkIgaHa_c50PAEY/edit?usp=sharing)
+[**UserStories**](https://docs.google.com/spreadsheets/d/1BrhNhX1Fiv-3raMT9crMyYyqyEfbfkIgaHa_c50PAEY/edit?usp=sharing)
 
 
 ### Structure
-For information architecture see [**Database Schema**](#https://github.com/jamiebird119/game_space/blob/792ef9b4cec575be88bfac5a9415c218069f3f8a/database-schema.png)
+For information architecture see [**Database Schema**](https://github.com/jamiebird119/game_space/blob/792ef9b4cec575be88bfac5a9415c218069f3f8a/database-schema.png)
 
 ### Skeleton 
-For wireframes see [wireframes-folder](#https://github.com/jamiebird119/game_space/blob/bcce69db511ec767cd7842d67e1c7cf19f2eb588/wireframes) on github.
+For wireframes see [wireframes-folder](https://github.com/jamiebird119/game_space/blob/bcce69db511ec767cd7842d67e1c7cf19f2eb588/wireframes) on github.
 
 ### Surface
 #### Design
@@ -222,7 +222,7 @@ would allow a browsing user to see other games they may like increasing the like
 - Serves the deployed version of the site to the public
 
 ## Testing
-See [testing link](#https://docs.google.com/spreadsheets/d/1BrhNhX1Fiv-3raMT9crMyYyqyEfbfkIgaHa_c50PAEY/edit#gid=787376127) second tab with all details of testing.
+See [testing link](https://docs.google.com/spreadsheets/d/1BrhNhX1Fiv-3raMT9crMyYyqyEfbfkIgaHa_c50PAEY/edit#gid=787376127) second tab with all details of testing.
 ## Deployment
 
 ### Home App
@@ -269,7 +269,7 @@ would be shown on the game details page when they leave a review.
 The site was originally developed on Gitpod and can be run locally using:
 `$ python3 manage.py runserver` 
 This was then pushed to a heroku provider available at 
-[GameSpace](#https://game-space-ecommerce.herokuapp.com/)
+[GameSpace](https://game-space-ecommerce.herokuapp.com/)
 
 The differences between the developmental and deployment version are as follows:
 - The developmental server hosts media and static files locally whereas the deployed version uses an Amazon S3 bucket for file hosting. 
@@ -279,8 +279,8 @@ The differences between the developmental and deployment version are as follows:
 - Finally debug is set to false on the deployed version and USE_AWS is set to True. 
 
 ## Media
-Game images and info for PC, PS and Xbox games from [*Steam*](#https://store.steampowered.com/).
-Switch game info from [*Nintento*](#https://store.nintendo.co.uk/games/nintendo-switch/view-all.list)
+Game images and info for PC, PS and Xbox games from [*Steam*](https://store.steampowered.com/).
+Switch game info from [*Nintento*](https://store.nintendo.co.uk/games/nintendo-switch/view-all.list)
 
 ## Acknowledgements
 Thanks to Reuben Ferrante for his help and input and the other tutors at Code Institute for their help and patience. 
