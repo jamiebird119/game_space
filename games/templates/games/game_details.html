@@ -1,7 +1,12 @@
 {% extends "base.html" %} {% load static %} {% block page_header %}
 
 <div class="page-header"></div>
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block head_title %}
+{{game.name}} details
+{% endblock %}
+{% block content %}
 
 <div class="container">
 	<div class="row border-grey">
@@ -16,7 +21,7 @@
 		</div>
 		<div class="col-12 col-md-6">
       {% if game.image %}
-			<img class="rounded mx-auto my-2 game-image" src="{{MEDIA_URL}}{{game.image}}"/>
+			<img class="rounded mx-auto my-2 game-image" src="{{MEDIA_URL}}{{game.image}}" alt="{{game.name}}"/>
         {% else %}
 			<img class="rounded text-center" style="height: 300px; width: auto; display: block;" src="{{ MEDIA_URL }}noimage.png" alt="{{ game.name }}">
         {% endif %}
@@ -68,7 +73,7 @@
                         {% csrf_token %}
 							<div class="form-group my-3">
 								<select class="custom-select" name="console" id="console_select" data-item_id="{{game.id}}" required>
-									<option disabled>Select Console</option>
+									<option placeholder required>Select Console</option>
                                     {% for console in game.consoles.all %}                
 									<option value="{{console.id}}">      
                                     {{ console.friendly_name }}</option>

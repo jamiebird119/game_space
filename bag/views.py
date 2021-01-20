@@ -13,7 +13,12 @@ def get_bag(request):
 
 def add_to_bag(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
-    quantity = int(request.POST.get('quantity'))
+    print(request.POST)
+    if request.POST.get('console') == "Select Console":
+        messages.error(request, "Please select a console.")
+        redirect_url = request.POST.get('redirect_url')
+        return redirect(redirect_url)
+    quantity = 1
     redirect_url = request.POST.get('redirect_url')
     console_id = request.POST.get('console')
     console = get_object_or_404(Console, pk=console_id)

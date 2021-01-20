@@ -35,7 +35,8 @@ def games(request):
         if 'q' in request.GET:
             query = request.GET['q']
             queries = Q(name__icontains=query) | Q(description__icontains=query) | Q(
-                consoles__friendly_name__icontains=query) | Q(genres__name__icontains=query)
+                consoles__friendly_name__icontains=query) | Q(genres__name__icontains=query) | Q(
+                consoles__name__icontains=query)
             games = games.filter(queries).distinct()
             if query == "":
                 messages.warning(request, 'You have not entered a search criteria!')

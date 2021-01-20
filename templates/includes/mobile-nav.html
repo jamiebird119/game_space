@@ -8,6 +8,7 @@
 </div>
 <div class="mobile-spacer"></div>
 <nav class="navbar d-lg-none navbar-dark bg-primary w-100">
+    <ul>
 	<li class="list-inline-item nav-link-list">
 		<a href="{% url 'games' %}" class="d-block d-lg-none">
 			<div class="text-center">
@@ -21,7 +22,7 @@
 		</a>
 	</li>
 	<li class="list-inline-item dropdown nav-link-list">
-		<a class="nav-link text-grey" href="" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<a class="nav-link text-grey" href="" id="user-options2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			<div class="text-center d-block d-lg-none">
 				<div>
 					<i class="fas fa-user fa-lg text-grey"></i>
@@ -29,7 +30,7 @@
 				<p class="text-grey">My Account</p>
 			</div>
 		</a>
-		<div class="dropdown-menu border-0 bg-primary" aria-labelledby="user-options">
+		<div class="dropdown-menu border-0 bg-primary" aria-labelledby="user-options2">
               {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                 
@@ -61,5 +62,6 @@
                     </p>
 			</div>
 		</a>
-	</li>
+    </li>
+    </ul>
 </nav>
